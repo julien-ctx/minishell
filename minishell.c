@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/01 18:45:08 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/09 14:42:49 by jcauchet         ###   ########.fr       */
+/*   Created: 2022/06/08 18:39:13 by jcauchet          #+#    #+#             */
+/*   Updated: 2022/06/09 14:33:25 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "includes/minishell.h"
 
-# include <stdlib.h>
-# include <unistd.h>
-
-# define BUFFER_SIZE 1
-
-char	*get_next_line(int fd);
-char	*ft_strjoin(char *s1, char *s2);
-int		ft_strlen(char *s);
-char	*ft_strchr(char *s, int c);
-char	*ft_substr(char *s, int start, int len);
-char	*ft_strdup(char *s1);
-
-#endif
+int	main()
+{
+	while (1)
+	{
+		print_prompt();
+	}
+}

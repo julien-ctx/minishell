@@ -51,24 +51,37 @@ FLAGS = -Wall -Wextra -Werror
 
 NAME = libft.a
 
+PROJECT = LIBFT
+
+GREEN = "\033[1;32m"
+RED = "\033[1;31m"
+YELLOW = "\033[1;33m"
+BLUE = "\033[1;34m"
+WHITE = "\033[1;37m"
+RESET = "\033[0m"
+
+.c.o: $(SRCS)
+	@printf $(GREEN)"\r\033[KCreating object files 👉 "$(YELLOW)"<$<> "$(RESET)
+	@gcc $(FLAGS) -c $< -o $(<:.c=.o)
+
 all: $(NAME)
 
-bonus: fclean b_all
+bonus: b_all
 
 b_all: $(OBJS) $(B_OBJS)
-	ar crs $(NAME) $(B_OBJS)
+	@ar crs $(NAME) $(B_OBJS)
 
 $(NAME): $(OBJS)
-	ar crs $(NAME) $(OBJS)
-
-.c.o:
-	gcc $(FLAGS) -c $< -o $(<:.c=.o)
+	@ar crs $(NAME) $(OBJS)
+	@printf $(GREEN)"\r\033[K✅ SUCCESS: "$(WHITE)$(NAME)$(GREEN)" has been created\n"$(RESET)
 
 clean:
-	rm -rf $(OBJS) $(B_OBJS)
+	@rm -rf $(OBJS) $(B_OBJS)
+	@printf $(RED)"\r\033[K➜ ["$(PROJECT)"] "$(WHITE)"clean"$(RED)" has been done\n"$(RESET)
 
 fclean: clean
-	rm -rf $(NAME)
+	@rm -rf $(NAME)
+	@printf $(RED)"\r\033[K➜ ["$(PROJECT)"] "$(WHITE)"fclean"$(RED)" has been done\n"$(RESET)
 
 re: fclean all
 
