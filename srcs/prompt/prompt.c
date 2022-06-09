@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 14:34:38 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/09 14:36:01 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/06/09 19:18:35 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,11 @@
 
 void	print_prompt(void)
 {
-	printf("Je suis le prompt\n");
+	char	cwd[1024];
+	
+	printf("\e[1;36m");
+	printf("%s@:", getenv("USER"));
+	printf("\e[1;31m");
+	printf("%s$ ", getcwd(cwd, sizeof(cwd)));
+	printf("\033[0m");
 }
