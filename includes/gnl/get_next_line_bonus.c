@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcauchet <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 18:42:31 by jcauchet          #+#    #+#             */
-/*   Updated: 2021/11/08 18:42:33 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/06/10 18:48:06 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ char	*ft_reader(char *storage, int fd)
 	char	buf[BUFFER_SIZE + 1];
 
 	ret = 1;
-	while (ret && (!ft_strchr(storage, '\n')))
+	while (ret && (!gnl_strchr(storage, '\n')))
 	{
 		ret = read(fd, buf, BUFFER_SIZE);
 		if (ret < 0)
 			return (NULL);
 		else
 			buf[ret] = '\0';
-		storage = ft_strjoin(storage, buf);
+		storage = gnl_strjoin(storage, buf);
 	}
 	return (storage);
 }
@@ -76,7 +76,7 @@ char	*ft_new_storage(char *storage)
 		return (NULL);
 	}
 	i++;
-	new_storage = ft_substr(storage, i, ft_strlen(storage));
+	new_storage = gnl_substr(storage, i, gnl_strlen(storage));
 	if (!new_storage)
 		return (NULL);
 	free(storage);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
+/*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 17:12:26 by jcauchet          #+#    #+#             */
-/*   Updated: 2021/10/25 17:34:10 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/06/10 18:29:06 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	if (destination > source)
 	{
 		len--;
-		while (len >= 0 && len < ft_strlen(destination)
-			&& len < ft_strlen(source))
+		while (len >= 0 && (int)len < ft_strlen(destination)
+			&& (int)len < ft_strlen(source))
 		{
 			destination[len] = source[len];
 			len--;

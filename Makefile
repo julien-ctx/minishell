@@ -3,7 +3,9 @@ NAME = minishell
 PROJECT = MINISHELL
 
 SRCS = minishell.c \
-		$(addprefix srcs/, prompt/prompt.c) \
+		$(addprefix srcs/prompt/, prompt.c) \
+		$(addprefix srcs/signals/, signals.c) \
+		$(addprefix srcs/parsing/, parsing.c) \
 		$(addprefix includes/gnl/, get_next_line.c get_next_line_utils.c) \
 
 OBJS = $(SRCS:.c=.o)
@@ -25,7 +27,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	@make bonus -C includes/libft/
-	@gcc $(CFLAGS) -o $(NAME) -L includes/libft $(SRCS) -lreadline 
+	@gcc $(CFLAGS) -o $(NAME) -L includes/libft -lft $(SRCS) -lreadline 
 	@printf $(GREEN)"\r\033[K✅ SUCCESS: "$(WHITE)$(NAME)$(GREEN)" has been created\n"$(RESET)
 
 clean:

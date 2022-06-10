@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
+/*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 19:01:37 by jcauchet          #+#    #+#             */
-/*   Updated: 2021/10/25 17:36:19 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/06/10 18:31:12 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+size_t	ft_strlcat(char *dst, char *src, size_t dstsize)
 {
 	size_t		i;
 	size_t		j;
@@ -30,12 +30,3 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	dst[i] = 0;
 	return (len);
 }
-
-/*int main (int ac, char **av)
-{
-	char dst[5] = "aaaa";
-	char src[10] = "Hello";
-	printf("%lu\n", strlcat(dst, src, 5));
-	printf("%s\n", dst);
-
-}*/

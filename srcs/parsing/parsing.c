@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/05 15:19:39 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/10 18:17:43 by jcauchet         ###   ########.fr       */
+/*   Created: 2022/06/10 17:15:56 by jcauchet          #+#    #+#             */
+/*   Updated: 2022/06/10 17:58:55 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/minishell.h"
 
-int	ft_strlen(char *s)
+void	parsing(char *args)
 {
-	int	i;
-
-	if (!s)
-		return (0);
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
+	if (!ft_strncmp(args, "exit", 4))
+		exit(0);
+	return ;
 }
