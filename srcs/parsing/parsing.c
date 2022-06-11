@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 17:15:56 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/10 17:58:55 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/06/11 17:34:48 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	parsing(char *args)
 {
-	if (!ft_strncmp(args, "exit", 4))
-		exit(0);
+	(void)args;
 	return ;
 }

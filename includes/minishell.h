@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 18:40:01 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/10 18:03:52 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/06/11 17:36:04 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,12 @@
 # include <readline/history.h>
 # include <signal.h>
 
-# define CONTINUE 2
+# define CONTINUE	2
+# define STOP		3
 
 extern int g_global;
 
-char	*print_prompt(void);
+void	print_prompt(void);
 void	signal_init(void);
 void	ctrl_c(int sig);
 void	parsing(char *args);
