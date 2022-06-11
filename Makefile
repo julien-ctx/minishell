@@ -12,6 +12,8 @@ OBJS = $(SRCS:.c=.o)
 
 CFLAGS = -Wall -Wextra -Werror
 
+HEADER = -I./includes -I./includes/libft/ -I./includes/gnl
+
 GREEN = "\033[1;32m"
 RED = "\033[1;31m"
 YELLOW = "\033[1;33m"
@@ -21,13 +23,13 @@ RESET = "\033[0m"
 
 .c.o: $(SRCS)
 	@printf $(GREEN)"\r\033[KCreating object files 👉 "$(YELLOW)"<$<> "$(RESET)
-	@gcc $(FLAGS) -c $< -o $(<:.c=.o)
+	@gcc $(CFLAGS) $(HEADER) -c $< -o $(<:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	@make bonus -C includes/libft/
-	@gcc $(CFLAGS) -o $(NAME) -L includes/libft -lft $(SRCS) -lreadline 
+	@gcc $(CFLAGS) $(HEADER) -o $(NAME) -L includes/libft -lft $(SRCS) -lreadline 
 	@printf $(GREEN)"\r\033[K✅ SUCCESS: "$(WHITE)$(NAME)$(GREEN)" has been created\n"$(RESET)
 
 clean:

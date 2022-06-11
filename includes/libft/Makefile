@@ -32,19 +32,20 @@ SRCS = ft_atoi.c \
 	   ft_putnbr_fd.c \
 	   ft_strmapi.c \
 	   ft_striteri.c \
+	   ft_lstnew.c \
+	   ft_lstadd_front.c \
+	   ft_lstsize.c \
+	   ft_lstlast.c \
+	   ft_lstadd_back.c \
+	   ft_lstdelone.c \
+	   ft_lstclear.c \
+	   ft_lstiter.c \
+	   ft_lstmap.c \
+
 
 OBJS = $(SRCS:.c=.o)
 
-B_SRCS = ft_lstnew.c \
-		ft_lstadd_front.c \
-		ft_lstsize.c \
-		ft_lstlast.c \
-		ft_lstadd_back.c \
-		ft_lstdelone.c \
-		ft_lstclear.c \
-		ft_lstiter.c \
-		ft_lstmap.c \
-
+		
 B_OBJS = $(B_SRCS:.c=.o) 
 
 FLAGS = -Wall -Wextra -Werror
@@ -66,10 +67,8 @@ RESET = "\033[0m"
 
 all: $(NAME)
 
-bonus: b_all
-
-b_all: $(OBJS) $(B_OBJS)
-	@ar crs $(NAME) $(B_OBJS)
+bonus:
+	@make all
 
 $(NAME): $(OBJS)
 	@ar crs $(NAME) $(OBJS)
