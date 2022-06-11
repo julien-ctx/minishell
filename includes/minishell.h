@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 18:40:01 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/11 17:36:04 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/06/11 20:24:35 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@
 
 extern int g_global;
 
-void	print_prompt(void);
-void	signal_init(void);
+char	*create_prompt(void);
 void	ctrl_c(int sig);
 void	parsing(char *args);
 
