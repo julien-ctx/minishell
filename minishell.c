@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
+/*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 18:39:13 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/12 17:05:27 by juliencauch      ###   ########.fr       */
+/*   Updated: 2022/06/15 14:35:06 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,6 @@ been typed by checking args value (NULL when you type CTRL-D)
 ***************************************************************************/
 int stop_check(char *args, char *prompt)
 {
-	if (g_global)
-	{
-		printf("\n\n");
-		g_global = 0;
-		return (CONTINUE);
-	}
 	if (!args)
 	{
 		printf("\r");

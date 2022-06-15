@@ -12,7 +12,7 @@ OBJS = $(SRCS:.c=.o)
 
 CFLAGS = -Wall -Wextra -Werror
 
-HEADER = -I./includes -I./includes/libft/ -I./includes/gnl
+HEADER = -I./includes -I./includes/libft/ -I./includes/gnl -I/Users/jcauchet/.brew/opt/readline/include/
 
 GREEN = "\033[1;32m"
 RED = "\033[1;31m"
@@ -21,15 +21,15 @@ BLUE = "\033[1;34m"
 WHITE = "\033[1;37m"
 RESET = "\033[0m"
 
+all: $(NAME)
+
 .c.o: $(SRCS)
 	@printf $(GREEN)"\r\033[KCreating object files 👉 "$(YELLOW)"<$<> "$(RESET)
 	@gcc $(CFLAGS) $(HEADER) -c $< -o $(<:.c=.o)
 
-all: $(NAME)
-
 $(NAME): $(OBJS)
 	@make bonus -C includes/libft/
-	@gcc $(CFLAGS) $(HEADER) -o $(NAME) -L includes/libft -lft $(SRCS) -lreadline 
+	@gcc $(CFLAGS) $(HEADER) -o $(NAME) -L includes/libft -lft $(SRCS) -L/Users/jcauchet/.brew/opt/readline/lib -lreadline
 	@printf $(GREEN)"\r\033[K✅ SUCCESS: "$(WHITE)$(NAME)$(GREEN)" has been created\n"$(RESET)
 
 clean:
