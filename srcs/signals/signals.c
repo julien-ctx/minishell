@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 16:37:16 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/15 14:41:51 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/06/16 14:45:47 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ void	ctrl_c(int sig)
 {
 	if (sig == SIGINT)
 	{
-		rl_replace_line("", 0);
+		printf("\n");
+		rl_on_new_line();
+		rl_redisplay();
 	}
-		g_global = 1;
 	return ;
 }
