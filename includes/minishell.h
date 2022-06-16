@@ -29,8 +29,17 @@
 
 extern int g_global;
 
+// Prompt functions
+
 char	*create_prompt(void);
+
+// Signal functions
+
 void	ctrl_c(int sig);
+void	ctrl_bs(int sig);
+
+// Parsing functions
+
 void	parsing(char *args);
 
 #endif

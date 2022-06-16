@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 18:39:13 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/15 14:35:06 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/06/16 15:00:24 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int stop_check(char *args, char *prompt)
 		return (STOP);
 	return (CONTINUE);
 }
+
 /***************************************************************************
 Main loop to retrieve arguments and then use the parser or display an error
 message on the terminal and terminate the session
@@ -61,8 +62,14 @@ int	req_args(void)
 	}
 }
 
-int	main(void)
+void	signal_init(void)
 {
 	signal(SIGINT, ctrl_c);
+	signal(SIGQUIT, ctrl_bs);
+}
+
+int	main(void)
+{
+	signal_init();
 	req_args();
 }
