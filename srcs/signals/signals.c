@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 16:37:16 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/16 16:02:16 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/06/16 16:41:40 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,6 @@ Handles CTRL \ and SIGQUIT signal
 void	ctrl_bs(int sig)
 {
 	(void)sig;
+	rl_on_new_line();
+	rl_redisplay();
 }

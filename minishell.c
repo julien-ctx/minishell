@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 18:39:13 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/16 16:16:39 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/06/16 17:02:56 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,6 @@ int	req_args(void)
 			add_history(args);
 		if (stop_check(args, g_global->prompt) == STOP)
 			return(return_and_free());
-		else
-			continue;
 		free(g_global->prompt);
 		parsing(args);
 	}
@@ -73,6 +71,5 @@ int	main(void)
 	signal_init();
 	req_args();
 	free(g_global);
-	system("leaks minishell");
 	return (0);
 }

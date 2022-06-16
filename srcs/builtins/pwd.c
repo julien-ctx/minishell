@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/10 17:15:56 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/16 17:37:59 by jcauchet         ###   ########.fr       */
+/*   Created: 2022/06/16 17:32:47 by jcauchet          #+#    #+#             */
+/*   Updated: 2022/06/16 17:36:59 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	parsing(char *args)
+void	ft_pwd(void)
 {
-	(void)args;
+	char	cwd[1024];
+	
+	printf("%s\n", getcwd(cwd, sizeof(cwd)));
 }

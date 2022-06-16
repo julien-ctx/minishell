@@ -47,4 +47,8 @@ void	ctrl_bs(int sig);
 
 void	parsing(char *args);
 
+// Builtin functions
+
+void	ft_pwd(void);
+
 #endif

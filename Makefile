@@ -6,6 +6,7 @@ SRCS = minishell.c \
 		$(addprefix srcs/prompt/, prompt.c) \
 		$(addprefix srcs/signals/, signals.c) \
 		$(addprefix srcs/parsing/, parsing.c) \
+		$(addprefix srcs/builtins/, pwd.c unset.c env.c exit.c cd.c echo.c export.c) \
 		$(addprefix includes/gnl/, get_next_line.c get_next_line_utils.c) \
 
 OBJS = $(SRCS:.c=.o)
