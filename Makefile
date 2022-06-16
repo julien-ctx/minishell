@@ -1,3 +1,25 @@
+GREEN = "\033[1;32m"
+RED = "\033[1;31m"
+YELLOW = "\033[1;33m"
+BLUE = "\033[1;34m"
+WHITE = "\033[1;37m"
+RESET = "\033[0m"
+
+rl:
+	@rm -rf req.sh
+	@echo "if [[ ! -d "readline" ]]" >> req.sh
+	@echo "then" >> req.sh
+	@echo "\ttouch readline-8.1.tar.gz" >> req.sh
+	@echo "\techo "Creating readline library..."" >> req.sh
+	@echo "\tcurl -ks https://ftp.gnu.org/gnu/readline/readline-8.1.tar.gz > readline-8.1.tar.gz" >> req.sh
+	@echo "\techo "Readline folder created!"" >> req.sh
+	@echo "\ttar -xf readline-8.1.tar.gz" >> req.sh
+	@echo "\tmv readline-8.1 readline" >> req.sh
+	@echo "\trm -rf readline-8.1.tar.gz" >> req.sh
+	@echo "fi" >> req.sh
+	@sh req.sh
+	@rm -rf req.sh
+
 NAME = minishell
 
 PROJECT = MINISHELL
@@ -13,33 +35,30 @@ OBJS = $(SRCS:.c=.o)
 
 CFLAGS = -Wall -Wextra -Werror
 
-HEADER = -I./includes -I./includes/libft/ -I./includes/gnl -I/Users/jcauchet/.brew/opt/readline/include/
+HEADER = -I./includes -I./includes/libft/ -I./includes/gnl -I./readline
 
-GREEN = "\033[1;32m"
-RED = "\033[1;31m"
-YELLOW = "\033[1;33m"
-BLUE = "\033[1;34m"
-WHITE = "\033[1;37m"
-RESET = "\033[0m"
 
-all: $(NAME)
+all: $(NAME) $(mytarget)
 
 .c.o: $(SRCS)
+	@make rl
 	@printf $(GREEN)"\r\033[KCreating object files 👉 "$(YELLOW)"<$<> "$(RESET)
 	@gcc $(CFLAGS) $(HEADER) -c $< -o $(<:.c=.o)
 
 $(NAME): $(OBJS)
 	@make bonus -C includes/libft/
-	@gcc $(CFLAGS) $(HEADER) -o $(NAME) -L includes/libft -lft $(SRCS) -L/Users/jcauchet/.brew/opt/readline/lib -lreadline
+	@gcc $(CFLAGS) $(HEADER) -o $(NAME) -L includes/libft -lft $(SRCS) -L readline -lreadline
 	@printf $(GREEN)"\r\033[K✅ SUCCESS: "$(WHITE)$(NAME)$(GREEN)" has been created\n"$(RESET)
 
 clean:
 	@rm -rf $(OBJS) 
+	@rm -rf readline
 	@make clean -C includes/libft
 	@printf $(RED)"\r\033[K➜ ["$(PROJECT)"] "$(WHITE)"clean"$(RED)" has been done\n"$(RESET)
 
 fclean:
 	@rm -rf $(OBJS)
+	@rm -rf readline
 	@rm -rf $(NAME)
 	@rm -rf includes/libft/libft.a
 	@make fclean -C includes/libft
@@ -48,4 +67,4 @@ fclean:
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re rl
