@@ -27,7 +27,12 @@
 # define CONTINUE	2
 # define STOP		3
 
-extern int g_global;
+extern struct global *g_global;
+
+typedef struct global
+{
+	char	*prompt;
+}	t_global;
 
 // Prompt functions
 

@@ -6,17 +6,17 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 18:39:13 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/16 15:00:24 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/06/16 16:16:39 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/minishell.h"
 
-int	g_global = 0;
+t_global *g_global;
 
-int	return_and_free(char *prompt)
+int	return_and_free(void)
 {
-	free(prompt);
+	free(g_global->prompt);
 	return (STOP);
 }
 
@@ -45,19 +45,18 @@ message on the terminal and terminate the session
 int	req_args(void)
 {
 	char	*args;
-	char	*prompt;
 
 	while (1)
 	{
-		prompt = create_prompt();
-		args = readline(prompt);	
+		g_global->prompt = create_prompt();
+		args = readline(g_global->prompt);	
 		if (ft_strlen(args))
 			add_history(args);
-		if (stop_check(args, prompt) == STOP)
-			return(return_and_free(prompt));
+		if (stop_check(args, g_global->prompt) == STOP)
+			return(return_and_free());
 		else
 			continue;
-		free(prompt);
+		free(g_global->prompt);
 		parsing(args);
 	}
 }
@@ -70,6 +69,10 @@ void	signal_init(void)
 
 int	main(void)
 {
+	g_global = malloc(sizeof(t_global));
 	signal_init();
 	req_args();
+	free(g_global);
+	system("leaks minishell");
+	return (0);
 }
