@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 16:37:16 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/17 22:59:38 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/06/17 23:06:10 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ Handles CTRL C and SIGINT signal
 void	ctrl_c(int sig)
 {
 	(void)sig;
-	printf("\n");
+	write(1, "\n", 1);
 	rl_on_new_line();
 	rl_redisplay();
 }
