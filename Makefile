@@ -7,12 +7,13 @@ RESET = "\033[0m"
 
 rl:
 	@rm -rf req.sh
+	@printf "\033[1;33m"
 	@echo "if [[ ! -d "includes/readline" ]]" >> req.sh
 	@echo "then" >> req.sh
 	@echo "\ttouch readline-8.1.tar.gz" >> req.sh
 	@echo "\techo "Creating readline library..."" >> req.sh
 	@echo "\tcurl -ks https://ftp.gnu.org/gnu/readline/readline-8.1.tar.gz > readline-8.1.tar.gz" >> req.sh
-	@echo "\techo "Readline folder has been created!"" >> req.sh
+	@echo "\techo "📁 SUCCESS : readline folder has been created!"" >> req.sh
 	@echo "\ttar -xf readline-8.1.tar.gz" >> req.sh
 	@echo "\tmv readline-8.1 readline" >> req.sh
 	@echo "\trm -rf readline-8.1.tar.gz" >> req.sh
@@ -57,7 +58,7 @@ clean:
 	@rm -rf includes/readline
 	@make clean -C includes/libft
 	@printf $(RED)"\r\033[K➜ ["$(PROJECT)"] "$(WHITE)"clean"$(RED)" has been done\n"$(RESET)
-	@printf $(RED)"\r\033[K➜ [READLINE] Library folder has been "$(WHITE)"removed"$(RED)"\n"$(RESET)
+	@printf $(RED)"\r\033[K➜ [READLINE] library folder has been "$(WHITE)"removed"$(RED)"\n"$(RESET)
 
 fclean:
 	@rm -rf $(OBJS)
@@ -65,7 +66,7 @@ fclean:
 	@rm -rf $(NAME)
 	@rm -rf includes/libft/libft.a
 	@make fclean -C includes/libft
-	@printf $(RED)"\r\033[K➜ [READLINE] Library folder has been "$(WHITE)"removed"$(RED)"\n"$(RESET)
+	@printf $(RED)"\r\033[K➜ [READLINE] library folder has been "$(WHITE)"removed"$(RED)"\n"$(RESET)
 	@printf $(RED)"\r\033[K➜ ["$(PROJECT)"] "$(WHITE)"clean"$(RED)" has been done\n"$(RESET)
 	@printf $(RED)"\r\033[K➜ ["$(PROJECT)"] "$(WHITE)"fclean"$(RED)" has been done\n"$(RESET)
 
