@@ -7,16 +7,18 @@ RESET = "\033[0m"
 
 rl:
 	@rm -rf req.sh
-	@echo "if [[ ! -d "readline" ]]" >> req.sh
+	@echo "if [[ ! -d "includes/readline" ]]" >> req.sh
 	@echo "then" >> req.sh
 	@echo "\ttouch readline-8.1.tar.gz" >> req.sh
 	@echo "\techo "Creating readline library..."" >> req.sh
 	@echo "\tcurl -ks https://ftp.gnu.org/gnu/readline/readline-8.1.tar.gz > readline-8.1.tar.gz" >> req.sh
-	@echo "\techo "Readline folder created!"" >> req.sh
+	@echo "\techo "Readline folder has been created!"" >> req.sh
 	@echo "\ttar -xf readline-8.1.tar.gz" >> req.sh
 	@echo "\tmv readline-8.1 readline" >> req.sh
 	@echo "\trm -rf readline-8.1.tar.gz" >> req.sh
+	@echo "\tmv readline includes" >> req.sh
 	@echo "fi" >> req.sh
+	@chmod 777 req.sh
 	@sh req.sh
 	@rm -rf req.sh
 
@@ -35,7 +37,7 @@ OBJS = $(SRCS:.c=.o)
 
 CFLAGS = -Wall -Wextra -Werror
 
-HEADER = -I./includes -I./includes/libft/ -I./includes/gnl -I./readline
+HEADER = -I./includes -I./includes/libft/ -I./includes/gnl -I./includes/readline
 
 
 all: $(NAME) $(mytarget)
@@ -47,21 +49,23 @@ all: $(NAME) $(mytarget)
 
 $(NAME): $(OBJS)
 	@make bonus -C includes/libft/
-	@gcc $(CFLAGS) $(HEADER) -o $(NAME) -L includes/libft -lft $(SRCS) -L readline -lreadline
+	@gcc $(CFLAGS) $(HEADER) -o $(NAME) -L includes/libft -lft $(SRCS) -L includes/readline -lreadline
 	@printf $(GREEN)"\r\033[K✅ SUCCESS: "$(WHITE)$(NAME)$(GREEN)" has been created\n"$(RESET)
 
 clean:
 	@rm -rf $(OBJS) 
-	@rm -rf readline
+	@rm -rf includes/readline
 	@make clean -C includes/libft
 	@printf $(RED)"\r\033[K➜ ["$(PROJECT)"] "$(WHITE)"clean"$(RED)" has been done\n"$(RESET)
+	@printf $(RED)"\r\033[K➜ [READLINE] Library folder has been "$(WHITE)"removed"$(RED)"\n"$(RESET)
 
 fclean:
 	@rm -rf $(OBJS)
-	@rm -rf readline
+	@rm -rf includes/readline
 	@rm -rf $(NAME)
 	@rm -rf includes/libft/libft.a
 	@make fclean -C includes/libft
+	@printf $(RED)"\r\033[K➜ [READLINE] Library folder has been "$(WHITE)"removed"$(RED)"\n"$(RESET)
 	@printf $(RED)"\r\033[K➜ ["$(PROJECT)"] "$(WHITE)"clean"$(RED)" has been done\n"$(RESET)
 	@printf $(RED)"\r\033[K➜ ["$(PROJECT)"] "$(WHITE)"fclean"$(RED)" has been done\n"$(RESET)
 
