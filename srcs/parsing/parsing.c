@@ -6,13 +6,17 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 17:15:56 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/16 17:37:59 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/06/17 18:24:08 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
+/***************************************************************************
+Main function to parse arguments and make the right behaviour.
+***************************************************************************/
+
 void	parsing(char *args)
 {
-	(void)args;
+	execute_commands(args);
 }

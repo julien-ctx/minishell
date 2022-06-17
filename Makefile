@@ -13,6 +13,7 @@ SRCS = minishell.c \
 		$(addprefix srcs/prompt/, prompt.c) \
 		$(addprefix srcs/signals/, signals.c) \
 		$(addprefix srcs/parsing/, parsing.c) \
+		$(addprefix srcs/commands/, commands.c) \
 		$(addprefix srcs/builtins/, pwd.c unset.c env.c exit.c cd.c echo.c export.c) \
 		$(addprefix includes/gnl/, get_next_line.c get_next_line_utils.c) \
 
@@ -20,25 +21,28 @@ OBJS = $(SRCS:.c=.o)
 
 CFLAGS = -Wall -Wextra -Werror
 
-HEADER = -I./includes -I./includes/libft/ -I./includes/gnl -I./includes/readline
+HEADER = -I./includes -I./includes/libft/ -I./includes/gnl -I./includes/readline/include
 
 all: $(NAME)
 
 rl:
 	@rm -rf req.sh
 	@printf "\033[1;33m"
-	@echo "if [[ ! -d "includes/readline" ]]" >> req.sh
+	@echo "if [[ ! -d "includes/readline" ]]" > req.sh
 	@echo "then" >> req.sh
 	@echo "\ttouch readline-8.1.tar.gz" >> req.sh
 	@echo "\techo "Creating readline library..."" >> req.sh
 	@echo "\tcurl -ks https://ftp.gnu.org/gnu/readline/readline-8.1.tar.gz > readline-8.1.tar.gz" >> req.sh
-	@echo "\techo "📁 SUCCESS: readline folder has been created!"" >> req.sh
 	@echo "\ttar -xf readline-8.1.tar.gz" >> req.sh
 	@echo "\tmv readline-8.1 readline" >> req.sh
 	@echo "\trm -rf readline-8.1.tar.gz" >> req.sh
 	@echo "\tmv readline includes" >> req.sh
+	@echo "\tcd includes/readline/" >> req.sh
+	@echo "\t./configure --prefix=$$(pwd)/includes/readline" >> req.sh
+	@echo "\tmake && make install && make clean" >> req.sh
+	@echo "\tcd ../../" >> req.sh
+	@echo "\techo "📁 SUCCESS: readline folder has been created!"" >> req.sh
 	@echo "fi" >> req.sh
-	@chmod 777 req.sh
 	@sh req.sh
 	@rm -rf req.sh
 
@@ -49,7 +53,7 @@ rl:
 
 $(NAME): $(OBJS)
 	@make bonus -C includes/libft/
-	@gcc $(CFLAGS) $(HEADER) -o $(NAME) -L includes/libft -lft $(SRCS) -L includes/readline -lreadline
+	@gcc $(CFLAGS) $(HEADER) -o $(NAME) -L includes/libft -lft $(SRCS) -L includes/readline/lib -lreadline
 	@printf $(GREEN)"\r\033[K✅ SUCCESS: "$(WHITE)$(NAME)$(GREEN)" has been created\n"$(RESET)
 
 clean:

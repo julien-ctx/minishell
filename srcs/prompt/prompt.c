@@ -6,11 +6,13 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 14:34:38 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/11 20:34:31 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/06/17 14:11:47 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+
 
 char	*create_prompt(void)
 {

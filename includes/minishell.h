@@ -51,4 +51,8 @@ void	parsing(char *args);
 
 void	ft_pwd(void);
 
+// Command functions (execve)
+
+void	execute_commands(char *args);
+
 #endif

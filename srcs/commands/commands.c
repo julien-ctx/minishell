@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signals.c                                          :+:      :+:    :+:   */
+/*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/10 16:37:16 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/17 22:59:38 by jcauchet         ###   ########.fr       */
+/*   Created: 2022/06/17 13:57:38 by jcauchet          #+#    #+#             */
+/*   Updated: 2022/06/17 18:23:37 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
 /***************************************************************************
-Handles CTRL C and SIGINT signal
+Main function to execute right commands with execve function. 
 ***************************************************************************/
-void	ctrl_c(int sig)
+void	execute_commands(char *args)
 {
-	(void)sig;
-	printf("\n");
-	rl_on_new_line();
-	rl_redisplay();
-}
-
-/***************************************************************************
-Handles CTRL \ and SIGQUIT signal
-***************************************************************************/
-void	ctrl_bs(int sig)
-{
-	(void)sig;
-	rl_on_new_line();
-	rl_redisplay();
+	char	*path;
+	char	*argv[2];
+	int		pid;
+	
+	argv[0] = args;
+	argv[1] = NULL; 
+	pid = fork();
+	if (pid == 0)
+	{
+		path = strjoin_without_free("/bin/", args);
+		execve(path, argv, NULL);
+		free(path);
+	}
+	else
+		wait(0);
 }

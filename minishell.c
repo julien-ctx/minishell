@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 18:39:13 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/16 17:02:56 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/06/17 19:03:54 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int stop_check(char *args, char *prompt)
 	{
 		printf("\r");
 		printf("%s", prompt);
+		(void)prompt;
 		printf("exit\n");
 		return (STOP);
 	}
