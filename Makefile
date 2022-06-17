@@ -5,24 +5,6 @@ BLUE = "\033[1;34m"
 WHITE = "\033[1;37m"
 RESET = "\033[0m"
 
-rl:
-	@rm -rf req.sh
-	@printf "\033[1;33m"
-	@echo "if [[ ! -d "includes/readline" ]]" >> req.sh
-	@echo "then" >> req.sh
-	@echo "\ttouch readline-8.1.tar.gz" >> req.sh
-	@echo "\techo "Creating readline library..."" >> req.sh
-	@echo "\tcurl -ks https://ftp.gnu.org/gnu/readline/readline-8.1.tar.gz > readline-8.1.tar.gz" >> req.sh
-	@echo "\techo "📁 SUCCESS : readline folder has been created!"" >> req.sh
-	@echo "\ttar -xf readline-8.1.tar.gz" >> req.sh
-	@echo "\tmv readline-8.1 readline" >> req.sh
-	@echo "\trm -rf readline-8.1.tar.gz" >> req.sh
-	@echo "\tmv readline includes" >> req.sh
-	@echo "fi" >> req.sh
-	@chmod 777 req.sh
-	@sh req.sh
-	@rm -rf req.sh
-
 NAME = minishell
 
 PROJECT = MINISHELL
@@ -40,8 +22,25 @@ CFLAGS = -Wall -Wextra -Werror
 
 HEADER = -I./includes -I./includes/libft/ -I./includes/gnl -I./includes/readline
 
+all: $(NAME)
 
-all: $(NAME) $(mytarget)
+rl:
+	@rm -rf req.sh
+	@printf "\033[1;33m"
+	@echo "if [[ ! -d "includes/readline" ]]" >> req.sh
+	@echo "then" >> req.sh
+	@echo "\ttouch readline-8.1.tar.gz" >> req.sh
+	@echo "\techo "Creating readline library..."" >> req.sh
+	@echo "\tcurl -ks https://ftp.gnu.org/gnu/readline/readline-8.1.tar.gz > readline-8.1.tar.gz" >> req.sh
+	@echo "\techo "📁 SUCCESS: readline folder has been created!"" >> req.sh
+	@echo "\ttar -xf readline-8.1.tar.gz" >> req.sh
+	@echo "\tmv readline-8.1 readline" >> req.sh
+	@echo "\trm -rf readline-8.1.tar.gz" >> req.sh
+	@echo "\tmv readline includes" >> req.sh
+	@echo "fi" >> req.sh
+	@chmod 777 req.sh
+	@sh req.sh
+	@rm -rf req.sh
 
 .c.o: $(SRCS)
 	@make rl
