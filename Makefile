@@ -27,23 +27,27 @@ all: $(NAME)
 
 rl:
 	@rm -rf req.sh
+	@rm -rf t
 	@printf "\033[1;33m"
 	@echo "if [[ ! -d "includes/readline" ]]" > req.sh
 	@echo "then" >> req.sh
 	@echo "\ttouch readline-8.1.tar.gz" >> req.sh
 	@echo "\techo "Creating readline library..."" >> req.sh
 	@echo "\tcurl -ks https://ftp.gnu.org/gnu/readline/readline-8.1.tar.gz > readline-8.1.tar.gz" >> req.sh
-	@echo "\ttar -xf readline-8.1.tar.gz" >> req.sh
+	@echo "\t(tar -xf readline-8.1.tar.gz) >> t"  >> req.sh
 	@echo "\tmv readline-8.1 readline" >> req.sh
 	@echo "\trm -rf readline-8.1.tar.gz" >> req.sh
 	@echo "\tmv readline includes" >> req.sh
 	@echo "\tcd includes/readline/" >> req.sh
-	@echo "\t./configure --prefix=$$(pwd)/includes/readline" >> req.sh
+	@echo "\t(./configure --prefix=$$(pwd)/includes/readline) >> t" >> req.sh
 	@echo "\tmake && make install && make clean" >> req.sh
+	@echo "\trm -rf t" >> req.sh
 	@echo "\tcd ../../" >> req.sh
+	@echo "\tclear" >> req.sh
 	@echo "\techo "📁 SUCCESS: readline folder has been created!"" >> req.sh
 	@echo "fi" >> req.sh
 	@sh req.sh
+	@rm -rf t
 	@rm -rf req.sh
 
 .c.o: $(SRCS)
