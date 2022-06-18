@@ -79,4 +79,16 @@ fclean:
 
 re: fclean all
 
+fre:
+	@rm -rf $(OBJS) 
+	@make clean -C includes/libft
+	@printf $(RED)"\r\033[K➜ ["$(PROJECT)"] "$(WHITE)"clean"$(RED)" has been done\n"$(RESET)
+	@rm -rf $(OBJS)
+	@rm -rf $(NAME)
+	@rm -rf includes/libft/libft.a
+	@make fclean -C includes/libft
+	@printf $(RED)"\r\033[K➜ ["$(PROJECT)"] "$(WHITE)"clean"$(RED)" has been done\n"$(RESET)
+	@printf $(RED)"\r\033[K➜ ["$(PROJECT)"] "$(WHITE)"fclean"$(RED)" has been done\n"$(RESET)
+	@make all
+
 .PHONY: all clean fclean re rl

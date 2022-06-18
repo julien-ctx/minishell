@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 16:37:16 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/17 23:06:10 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/06/18 17:39:11 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,12 @@ void	ctrl_bs(int sig)
 	(void)sig;
 	rl_on_new_line();
 	rl_redisplay();
+}
+/***************************************************************************
+Main function to give the right function to a specific signal
+***************************************************************************/
+void	signal_init(void)
+{
+	signal(SIGINT, ctrl_c);
+	signal(SIGQUIT, ctrl_bs);
 }

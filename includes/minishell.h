@@ -42,6 +42,7 @@ char	*create_prompt(void);
 
 void	ctrl_c(int sig);
 void	ctrl_bs(int sig);
+void	signal_init(void);
 
 // Parsing functions
 
