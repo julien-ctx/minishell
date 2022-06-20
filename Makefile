@@ -9,7 +9,8 @@ NAME = minishell
 
 PROJECT = MINISHELL
 
-SRCS = minishell.c \
+SRCS =	minishell.c \
+		list_env.c  \
 		$(addprefix srcs/prompt/, prompt.c) \
 		$(addprefix srcs/signals/, signals.c) \
 		$(addprefix srcs/parsing/, parsing.c) \

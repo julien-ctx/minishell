@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 18:39:13 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/18 17:37:05 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/06/20 18:02:00 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,12 @@ int	req_args(void)
 	}
 }
 
-
-
-int	main(void)
+int	main(int ac, char **av, char **env)
 {
+	(void)ac;
+	(void)av;
 	g_global = malloc(sizeof(t_global));
+	list_env(env);
 	signal_init();
 	req_args();
 	free(g_global);

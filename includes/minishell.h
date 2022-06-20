@@ -31,8 +31,12 @@ extern struct global *g_global;
 
 typedef struct global
 {
+	t_list	*env;
 	char	*prompt;
 }	t_global;
+
+// Zarley's part
+t_list *list_env(char **env);
 
 // Prompt functions
 
