@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 16:05:39 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/20 17:19:17 by ctardy           ###   ########.fr       */
+/*   Updated: 2022/06/21 16:51:45 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@
 
 typedef struct	s_list
 {
-	void	*content;
 	struct s_list *next;
+	struct s_list *next_sort;
+	void	*content;
 	char	*name;
 	char	*path;
 } t_list;

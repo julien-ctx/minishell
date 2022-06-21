@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:17:47 by ctardy            #+#    #+#             */
-/*   Updated: 2022/06/20 18:20:49 by ctardy           ###   ########.fr       */
+/*   Updated: 2022/06/21 18:52:31 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,21 @@
 Hi juju, it's Zarley there ! 🐊 This function take the evironnement in form
 of char ** and fill a list create for. Cya ! 👋
 ***************************************************************************/
+
+t_global *g_global;
+
+void	print_list(t_list *list)
+{
+	t_list *fake;
+	
+	fake = list;
+	while (fake)
+	{
+		printf("Name : %s\n", fake->name);
+		printf("Path : %s\n", fake->path);
+		fake = fake->next_sort;
+	}
+}
 
 int	env_size(char **env)
 {
@@ -42,7 +57,7 @@ t_list *list_env(char **env)
 	{
 		while (env[i][j] != '=')
 			j++;
-		if (first_lst)
+		if (i == 0)
 		{
 			first_lst = ft_lstnew(env[i], j);
 			j = 0;
@@ -55,4 +70,59 @@ t_list *list_env(char **env)
 		i++;
 	}
 	return (first_lst);
+}
+
+void	swap_list(t_list **previous_next, t_list *last)
+{
+	t_list	*swap;
+
+	swap = *previous_next;
+	*previous_next = last->next_sort;
+	swap->next_sort = last->next_sort->next_sort;
+	(*previous_next)->next_sort = swap;
+}
+
+t_list *sort_list(t_list **pstack_a)
+{
+	t_list	*last;
+	t_list	*prev;
+
+	prev = NULL;
+	last = *pstack_a;
+	while (last && last->next_sort)
+	{
+		if (ft_strncmp(last->name, last->next_sort->name, 3) > 0)
+		{
+			if (prev == NULL)
+				swap_list(pstack_a, last);
+			else
+				swap_list(&(prev->next_sort), last);
+			last = *pstack_a;
+			prev = NULL;
+		}
+		else
+		{
+			prev = last;
+			last = last->next_sort;
+		}
+	}
+	return (*pstack_a);
+}
+
+void	return_list(char **env)
+{
+	t_list *list;
+
+	g_global = malloc(sizeof(t_global));
+	g_global->env = list_env(env);
+	list = (g_global->env);
+	g_global->env = sort_list(&list);
+//	print_list(g_global->env);
+}
+
+int main(int argc, char **argv, char **env)
+{
+	(void)argc;
+	(void)argv;
+	return_list(env);
 }
