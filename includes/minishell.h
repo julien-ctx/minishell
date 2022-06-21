@@ -29,27 +29,29 @@
 
 extern struct global *g_global;
 
-typedef enum e_l_type
-{
-
-}	t_l_type
-	
-
 typedef struct global
 {
 	char	*prompt;
 }	t_global;
 
-typedef struct plex
+typedef enum e_pl
 {
-	char	c;
+	LETTER = 10,
+	DOLLAR,
+	D_QUOTE,
+	QUOTE,
+	SPACE,
+	CHEVRON,
+	R_CHEVRON,
+	PIPE,
+}	t_enum_pl;
 
-}	t_plex;
-
-typedef struct lex
+typedef struct pl
 {
-
-}	t_lex;
+	char		c;
+	t_enum_pl	type;
+	struct pl	*next;
+}	t_pl;
 
 // Prompt functions
 
