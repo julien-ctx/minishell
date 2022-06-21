@@ -29,10 +29,27 @@
 
 extern struct global *g_global;
 
+typedef enum e_l_type
+{
+
+}	t_l_type
+	
+
 typedef struct global
 {
 	char	*prompt;
 }	t_global;
+
+typedef struct plex
+{
+	char	c;
+
+}	t_plex;
+
+typedef struct lex
+{
+
+}	t_lex;
 
 // Prompt functions
 
@@ -43,6 +60,10 @@ char	*create_prompt(void);
 void	ctrl_c(int sig);
 void	ctrl_bs(int sig);
 void	signal_init(void);
+
+// Lexer functions
+
+void	lexer(char *args);
 
 // Parsing functions
 
