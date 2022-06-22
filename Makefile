@@ -12,7 +12,7 @@ PROJECT = MINISHELL
 SRCS = minishell.c \
 		$(addprefix srcs/prompt/, prompt.c) \
 		$(addprefix srcs/signals/, signals.c) \
-		$(addprefix srcs/lexer/, lexer.c) \
+		$(addprefix srcs/lexer/, lexer.c lexer_utils.c) \
 		$(addprefix srcs/parser/, parser.c) \
 		$(addprefix srcs/commands/, commands.c) \
 		$(addprefix srcs/builtins/, pwd.c unset.c env.c exit.c cd.c echo.c export.c) \
@@ -20,7 +20,7 @@ SRCS = minishell.c \
 
 OBJS = $(SRCS:.c=.o)
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 HEADER = -I./includes -I./includes/libft/ -I./includes/gnl -I./includes/readline/include
 

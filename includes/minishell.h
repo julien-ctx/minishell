@@ -27,31 +27,27 @@
 # define CONTINUE	2
 # define STOP		3
 
-extern struct global *g_global;
+extern struct global *g_glob;
 
 typedef struct global
 {
 	char	*prompt;
+	char	*curr;
 }	t_global;
 
-typedef enum e_pl
+typedef enum enum_l
 {
-	LETTER = 10,
-	DOLLAR,
-	D_QUOTE,
-	QUOTE,
-	SPACE,
-	CHEVRON,
-	R_CHEVRON,
-	PIPE,
-}	t_enum_pl;
+	COMMAND = 10,
+	VARIABLE,
 
-typedef struct pl
+}	t_enum_l;
+
+typedef struct l
 {
-	char		c;
-	t_enum_pl	type;
-	struct pl	*next;
-}	t_pl;
+	char		*str;
+	t_enum_l	type;
+	struct l	*next;
+}	t_l;
 
 // Prompt functions
 
@@ -66,6 +62,9 @@ void	signal_init(void);
 // Lexer functions
 
 void	lexer(char *args);
+t_l 	*create_new_elmt(char *str);
+t_l		*add_elmt(t_l **elmt, char *str);
+
 
 // Parsing functions
 

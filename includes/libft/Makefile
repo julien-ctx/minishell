@@ -41,6 +41,8 @@ SRCS = ft_atoi.c \
 	   ft_lstclear.c \
 	   ft_lstiter.c \
 	   ft_lstmap.c \
+	   append_char.c \
+	   strdup_one.c \
 
 
 OBJS = $(SRCS:.c=.o)

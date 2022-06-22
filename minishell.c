@@ -6,17 +6,17 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 18:39:13 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/21 13:58:27 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/06/22 15:58:50 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/minishell.h"
 
-t_global *g_global;
+t_global *g_glob;
 
 int	return_and_free(void)
 {
-	free(g_global->prompt);
+	free(g_glob->prompt);
 	return (STOP);
 }
 
@@ -48,24 +48,22 @@ int	req_args(void)
 
 	while (1)
 	{
-		g_global->prompt = create_prompt();
-		args = readline(g_global->prompt);	
+		g_glob->prompt = create_prompt();
+		args = readline(g_glob->prompt);	
 		if (ft_strlen(args))
 			add_history(args);
-		if (stop_check(args, g_global->prompt) == STOP)
+		if (stop_check(args, g_glob->prompt) == STOP)
 			return(return_and_free());
-		free(g_global->prompt);
+		free(g_glob->prompt);
 		lexer(args);
 	}
 }
 
-
-
 int	main(void)
 {
-	g_global = malloc(sizeof(t_global));
+	g_glob = malloc(sizeof(t_global));
 	signal_init();
 	req_args();
-	free(g_global);
+	free(g_glob);
 	return (0);
 }
