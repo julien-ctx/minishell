@@ -68,9 +68,9 @@ void	signal_init(void);
 
 // Lexer functions
 
-void	lexer(char *args);
-t_l 	*create_new_elmt(char *str);
-t_l		*add_elmt(t_l **elmt, char *str);
+void		lexer(char *args);
+t_l 		*create_new_elmt(char *str);
+t_l			*add_elmt(t_l **elmt, char *str);
 t_enum_l	find_type(char *str);
 
 // Parsing functions
