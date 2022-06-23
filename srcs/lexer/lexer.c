@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 13:58:50 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/23 15:23:39 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/06/23 17:24:46 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,5 @@ void	lexer(char *args)
 	while (args[++i])
 		checker_type(args, &elmt, i);
 	checker_type(args, &elmt, i);
-	printf("STR: %s, TYPE: %d\n", elmt->str, elmt->type);
+	printf("%s, %d\n", elmt->str, elmt->type);
 }

@@ -37,7 +37,7 @@ typedef struct global
 
 typedef enum enum_l
 {
-	BUILTIN = 10,
+	BUILTIN = 42,
 	EXEC,
 	VARIABLE,
 	PIPE,

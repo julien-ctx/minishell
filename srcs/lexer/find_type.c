@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 14:29:32 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/23 15:27:52 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/06/23 17:38:59 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,28 @@ int	is_builtin(char *str)
 
 int	is_exec(char *str)
 {
-	(void)str;
-	// needs to be edited later
-	return (1);
+	char	**path;
+	char	*all_paths;
+	char	*curr_path;
+	int		i;
+	
+	all_paths = getenv("PATH");
+	path = ft_split(all_paths, ':');
+	i = 0;
+	while (path[i])
+	{
+		curr_path = ft_strjoin(path[i], "/");	
+		curr_path = ft_strjoin(curr_path, str);	
+		if (!access(curr_path, F_OK))
+		{
+			free(curr_path);
+			return (1);
+		}
+		free(curr_path);
+		i++;
+	}
+	free(path);
+	return (0);
 }
 
 t_enum_l	chev_type(char *str)
@@ -49,7 +68,7 @@ t_enum_l	chev_type(char *str)
 	return (R_DCHEV);
 }
 
-t_enum_l	find_type(char *str)
+t_enum_l find_type(char *str)
 {
 	/*if (!str[0])
 		printf("NULL\n");*/
@@ -61,5 +80,5 @@ t_enum_l	find_type(char *str)
 		return (chev_type(str));
 	else if (!ft_strncmp("|", str, 1) && ft_strlen(str) == 1)
 		return (PIPE);
-	return (1);
+	return (-1);
 }

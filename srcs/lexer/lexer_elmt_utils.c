@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 14:06:58 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/23 14:32:41 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/06/23 17:30:09 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_l	*create_new_elmt(char *str)
 	new = malloc(sizeof(t_l));
 	new->str = str;
 	new->type = find_type(str);
+	printf("%d\n", new->type);
 	return (new);
 }
 
