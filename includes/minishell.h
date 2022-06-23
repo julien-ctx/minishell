@@ -37,9 +37,16 @@ typedef struct global
 
 typedef enum enum_l
 {
-	COMMAND = 10,
+	BUILTIN = 10,
+	EXEC,
 	VARIABLE,
-
+	PIPE,
+	R_CHEV,
+	L_CHEV,
+	R_DCHEV,
+	L_DCHEV,
+	QUOTE,
+	D_QUOTE,
 }	t_enum_l;
 
 typedef struct l
@@ -64,7 +71,7 @@ void	signal_init(void);
 void	lexer(char *args);
 t_l 	*create_new_elmt(char *str);
 t_l		*add_elmt(t_l **elmt, char *str);
-
+t_enum_l	find_type(char *str);
 
 // Parsing functions
 

@@ -12,7 +12,7 @@ PROJECT = MINISHELL
 SRCS = minishell.c \
 		$(addprefix srcs/prompt/, prompt.c) \
 		$(addprefix srcs/signals/, signals.c) \
-		$(addprefix srcs/lexer/, lexer.c lexer_utils.c) \
+		$(addprefix srcs/lexer/, lexer.c lexer_elmt_utils.c find_type.c) \
 		$(addprefix srcs/parser/, parser.c) \
 		$(addprefix srcs/commands/, commands.c) \
 		$(addprefix srcs/builtins/, pwd.c unset.c env.c exit.c cd.c echo.c export.c) \
@@ -44,7 +44,7 @@ rl:
 
 $(NAME): $(OBJS)
 	@make bonus -C includes/libft/
-	@gcc $(CFLAGS) $(HEADER) -o $(NAME) -L includes/libft -lft $(SRCS) -L includes/readline/lib -lreadline
+	@gcc $(CFLAGS) $(HEADER) -o $(NAME) -L includes/libft -lft $(SRCS) -lreadline
 	@printf $(GREEN)"\r\033[K✅ SUCCESS: "$(WHITE)$(NAME)$(GREEN)" has been created\n"$(RESET)
 
 clean:

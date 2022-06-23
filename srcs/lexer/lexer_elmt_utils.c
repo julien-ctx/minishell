@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer_utils.c                                      :+:      :+:    :+:   */
+/*   lexer_elmt_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 14:06:58 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/22 16:14:17 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/06/23 14:32:41 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-t_l *create_new_elmt(char *str)
+t_l	*create_new_elmt(char *str)
 {
 	t_l	*new;
 	
 	new = malloc(sizeof(t_l));
 	new->str = str;
-	//new->type = COMMAND;
-	// choose number for type here
+	new->type = find_type(str);
 	return (new);
 }
 
