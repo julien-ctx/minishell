@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 13:58:50 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/24 15:05:51 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/06/24 15:28:27 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,18 @@ void	checker_type(char *args, t_l **elmt, int *i)
 	}
 	else if ((args[*i] == ' ') || (args[*i] >= 9 && args[*i] <= 13))
 		handle_w_s(args, elmt, i);
-	else if (ft_isalnum(args[*i]))
-		g_glob->curr = append_char(g_glob->curr, args[*i]);
 	else if (args[*i] == '<' || args[*i] == '>')
 		handle_chev(args, elmt, i);
 	else if (args[*i] == '$')
 		handle_dollar(args, elmt, i);
 	else if (args[*i] == '|')
 		handle_pipe(args, elmt, i);
+	else if (args[*i] == '"')
+		handle_quote(args, elmt, i);
+	/*else if (ft_isalnum(args[*i]))
+		g_glob->curr = append_char(g_glob->curr, args[*i]);*/
+	else if (ft_isalnum(args[*i]))
+		g_glob->curr = append_char(g_glob->curr, args[*i]);
 }
 
 void	lexer(char *args)

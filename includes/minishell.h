@@ -80,6 +80,7 @@ void		handle_chev(char *args, t_l **elmt, int *i);
 void		handle_dollar(char *args, t_l **elmt, int *i);
 void		handle_w_s(char *args, t_l **elmt, int *i);
 void		handle_pipe(char *args, t_l **elmt, int *i);
+void		handle_quote(char *args, t_l **elmt, int *i);
 
 // Parsing functions
 

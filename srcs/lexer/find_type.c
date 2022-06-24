@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 14:29:32 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/24 14:18:09 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/06/24 15:33:04 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,11 @@ t_enum_l find_type(char *str)
 		return (PIPE);
 	else if (ft_strlen(str) == 1 && str[0] == '$')
 		return (DOLLAR);
+	else if (ft_strlen(str) == 1 && str[0] == '\'')
+		return (QUOTE);
+	else if (ft_strlen(str) == 1 && str[0] == '"')
+		return (D_QUOTE);
+	//create white space
 	else
 		return (TEXT);
 	return (-1);
