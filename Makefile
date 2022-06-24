@@ -12,7 +12,7 @@ PROJECT = MINISHELL
 SRCS = minishell.c \
 		$(addprefix srcs/prompt/, prompt.c) \
 		$(addprefix srcs/signals/, signals.c) \
-		$(addprefix srcs/lexer/, lexer.c lexer_elmt_utils.c find_type.c) \
+		$(addprefix srcs/lexer/, lexer.c lexer_elmt_utils.c find_type.c char_handling.c) \
 		$(addprefix srcs/parser/, parser.c) \
 		$(addprefix srcs/commands/, commands.c) \
 		$(addprefix srcs/builtins/, pwd.c unset.c env.c exit.c cd.c echo.c export.c) \

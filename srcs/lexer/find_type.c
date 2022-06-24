@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 14:29:32 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/23 18:27:01 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/06/24 14:18:09 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,9 @@ t_enum_l find_type(char *str)
 		return (chev_type(str));
 	else if (!ft_strncmp("|", str, 1) && ft_strlen(str) == 1)
 		return (PIPE);
+	else if (ft_strlen(str) == 1 && str[0] == '$')
+		return (DOLLAR);
+	else
+		return (TEXT);
 	return (-1);
 }

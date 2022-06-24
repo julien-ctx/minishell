@@ -6,11 +6,37 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 13:58:50 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/23 18:38:34 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/06/24 15:05:51 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+void	print_list_j(t_l *elmt, int n)
+{
+	t_l *tmp;
+
+	if (n)
+	{
+		tmp = elmt;
+		while (tmp->next != elmt)
+		{
+			printf("str='%s', type='%d'\n", tmp->str, tmp->type);
+			tmp = tmp->next;
+		}
+		printf("str='%s', type='%d'\n", tmp->str, tmp->type);
+	}
+	else
+	{
+		tmp = elmt->prev;
+		while (tmp->prev != elmt->prev)
+		{
+			printf("str='%s', type='%d'\n", tmp->str, tmp->type);
+			tmp = tmp->prev;
+		}
+		printf("str='%s', type='%d'\n", tmp->str, tmp->type);
+	}
+}
 
 void	checker_type(char *args, t_l **elmt, int *i)
 {
@@ -22,31 +48,16 @@ void	checker_type(char *args, t_l **elmt, int *i)
 			g_glob->curr = NULL;
 		}
 	}
+	else if ((args[*i] == ' ') || (args[*i] >= 9 && args[*i] <= 13))
+		handle_w_s(args, elmt, i);
 	else if (ft_isalnum(args[*i]))
-	{
 		g_glob->curr = append_char(g_glob->curr, args[*i]);
-	}
 	else if (args[*i] == '<' || args[*i] == '>')
-	{
-		if (g_glob->curr)
-		{
-			add_elmt(elmt, g_glob->curr);	
-			g_glob->curr = NULL;
-		}
-		g_glob->curr = append_char(g_glob->curr, args[*i]);
-		if (args[*i + 1] == args[*i])
-		{
-			g_glob->curr = append_char(g_glob->curr, args[*i + 1]);
-			add_elmt(elmt, g_glob->curr);
-			g_glob->curr = NULL;
-			(*i)++;
-		}
-		else
-		{
-			add_elmt(elmt, g_glob->curr);
-			g_glob->curr = NULL;
-		}
-	}
+		handle_chev(args, elmt, i);
+	else if (args[*i] == '$')
+		handle_dollar(args, elmt, i);
+	else if (args[*i] == '|')
+		handle_pipe(args, elmt, i);
 }
 
 void	lexer(char *args)
@@ -60,11 +71,5 @@ void	lexer(char *args)
 	while (args[++i])
 		checker_type(args, &elmt, &i);
 	checker_type(args, &elmt, &i);
-	i = 0;
-	while (elmt->next)
-	{
-		printf("%s, %d\n", elmt->str, elmt->type);
-		elmt = elmt->next;
-	}
-	printf("%s, %d\n", elmt->str, elmt->type);
+	print_list_j(elmt, 1);
 }

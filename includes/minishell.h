@@ -33,13 +33,14 @@ typedef struct global
 {
 	char	*prompt;
 	char	*curr;
+	int		in_quotes;
 }	t_global;
 
 typedef enum enum_l
 {
 	BUILTIN = 42,
 	EXEC,
-	VARIABLE,
+	DOLLAR,
 	PIPE,
 	R_CHEV,
 	L_CHEV,
@@ -47,6 +48,8 @@ typedef enum enum_l
 	L_DCHEV,
 	QUOTE,
 	D_QUOTE,
+	TEXT,
+	WHITE_SPACE
 }	t_enum_l;
 
 typedef struct l
@@ -54,6 +57,7 @@ typedef struct l
 	char		*str;
 	t_enum_l	type;
 	struct l	*next;
+	struct l	*prev;
 }	t_l;
 
 // Prompt functions
@@ -72,6 +76,10 @@ void		lexer(char *args);
 t_l 		*create_new_elmt(char *str);
 t_l			*add_elmt(t_l **elmt, char *str);
 t_enum_l	find_type(char *str);
+void		handle_chev(char *args, t_l **elmt, int *i);
+void		handle_dollar(char *args, t_l **elmt, int *i);
+void		handle_w_s(char *args, t_l **elmt, int *i);
+void		handle_pipe(char *args, t_l **elmt, int *i);
 
 // Parsing functions
 

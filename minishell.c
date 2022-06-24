@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 18:39:13 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/22 15:58:50 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/06/24 13:53:14 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	req_args(void)
 {
 	char	*args;
 
-	while (1)
+	while ("Minishell Sardou")
 	{
 		g_glob->prompt = create_prompt();
 		args = readline(g_glob->prompt);	
