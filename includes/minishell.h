@@ -17,12 +17,13 @@
 # include "../includes/libft/libft.h"
 # include "../includes/gnl/get_next_line.h"
 
-# include <string.h>
-# include <sys/types.h>
-# include <sys/wait.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <string.h>
 # include <signal.h>
+# include <stdio.h>
+# include <sys/types.h>
+# include <sys/wait.h>
 
 # define CONTINUE	2
 # define STOP		3
@@ -36,7 +37,13 @@ typedef struct global
 }	t_global;
 
 // Zarley's part
-t_list *list_env(char **env);
+void	print_list(t_list *list);
+
+char	*make_path(char *s2);
+t_list *sort_list(t_list **pstack_a);
+t_list	*list_env(char **env, int size_env);
+void	return_list(char **env);
+void	export(char *complet_path, t_list *lst_env);
 
 // Prompt functions
 

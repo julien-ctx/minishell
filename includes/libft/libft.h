@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 16:05:39 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/21 16:51:45 by ctardy           ###   ########.fr       */
+/*   Updated: 2022/06/23 19:40:26 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include <stdlib.h>
 # include <string.h>
-# include <stdio.h>
 # include <errno.h>
+# include <stdio.h>
 # include <unistd.h>
 
 typedef struct	s_list
@@ -24,6 +24,8 @@ typedef struct	s_list
 	struct s_list *next;
 	struct s_list *next_sort;
 	void	*content;
+	char	*head;
+	char	linker;
 	char	*name;
 	char	*path;
 } t_list;

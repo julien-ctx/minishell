@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:17:47 by ctardy            #+#    #+#             */
-/*   Updated: 2022/06/21 18:52:31 by ctardy           ###   ########.fr       */
+/*   Updated: 2022/06/24 15:05:50 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,7 @@ Hi juju, it's Zarley there ! 🐊 This function take the evironnement in form
 of char ** and fill a list create for. Cya ! 👋
 ***************************************************************************/
 
-t_global *g_global;
-
-void	print_list(t_list *list)
-{
-	t_list *fake;
-	
-	fake = list;
-	while (fake)
-	{
-		printf("Name : %s\n", fake->name);
-		printf("Path : %s\n", fake->path);
-		fake = fake->next_sort;
-	}
-}
+t_global	*g_global;
 
 int	env_size(char **env)
 {
@@ -42,17 +29,15 @@ int	env_size(char **env)
 	return (i);
 }
 
-t_list *list_env(char **env)
+t_list	*list_env(char **env, int size_env)
 {
 	t_list	*first_lst;
 	t_list	*lst_inter;
-	int		size_env;
 	int		i;
 	int		j;
 
 	i = 0;
 	j = 0;
-	size_env = env_size(env);
 	while (i < size_env)
 	{
 		while (env[i][j] != '=')
@@ -82,7 +67,7 @@ void	swap_list(t_list **previous_next, t_list *last)
 	(*previous_next)->next_sort = swap;
 }
 
-t_list *sort_list(t_list **pstack_a)
+t_list	*sort_list(t_list **pstack_a)
 {
 	t_list	*last;
 	t_list	*prev;
@@ -111,18 +96,18 @@ t_list *sort_list(t_list **pstack_a)
 
 void	return_list(char **env)
 {
-	t_list *list;
+	t_list	*list;
 
 	g_global = malloc(sizeof(t_global));
-	g_global->env = list_env(env);
+	g_global->env = list_env(env, env_size(env));
 	list = (g_global->env);
 	g_global->env = sort_list(&list);
-//	print_list(g_global->env);
 }
 
-int main(int argc, char **argv, char **env)
-{
-	(void)argc;
-	(void)argv;
-	return_list(env);
-}
+// int main(int argc, char **argv, char **env)
+// {
+// 	(void)argc;
+// 	(void)argv;
+// 	return_list(env);
+// 	print_list(g_global->env);
+// }
