@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 22:02:56 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/24 15:05:27 by ctardy           ###   ########.fr       */
+/*   Updated: 2022/06/24 19:18:34 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ int	is_letter(char *str)
 	i = 0;
 	while (str[i])
 	{
-		while ((str[i] >= 65 && str[i] <= 90) || (str[i] >= 97 && str[i] <= 122))
+		while ((str[i] >= 65 && str[i] <= 90)
+			|| (str[i] >= 97 && str[i] <= 122))
 			i++;
 		if ((str[i] < 65 || str[i] > 90) && (str[i] < 97 || str[i] > 122))
 			return (1);
@@ -50,7 +51,7 @@ int	is_letter(char *str)
 	return (0);
 }
 
-int is_number(char *str)
+int	is_number(char *str)
 {
 	int	i;
 
@@ -67,7 +68,7 @@ int is_number(char *str)
 
 char	*name_checker(char *str)
 {
-	int	i;
+	int		i;
 	char	*clean_name;
 
 	i = 0;
@@ -94,8 +95,10 @@ char	*name_checker(char *str)
 t_list	*ft_lstnew(char *env_choosen, int size)
 {
 	t_list	*lst;
+	int		size_env;
 	char	*raw_name;
 
+	size_env = ft_strlen(env_choosen);
 	lst = malloc(sizeof(t_list));
 	if (!lst)
 		return (NULL);
@@ -103,7 +106,7 @@ t_list	*ft_lstnew(char *env_choosen, int size)
 	raw_name = ft_substr(env_choosen, 0, size);
 	lst->name = name_checker(raw_name);
 	lst->linker = '=';
-	lst->path = make_path(ft_substr(env_choosen, size + 1, ft_strlen(env_choosen)));
+	lst->path = make_path(ft_substr(env_choosen, size + 1, size_env));
 	lst->next = NULL;
 	lst->next_sort = NULL;
 	return (lst);

@@ -43,7 +43,10 @@ char	*make_path(char *s2);
 t_list *sort_list(t_list **pstack_a);
 t_list	*list_env(char **env, int size_env);
 void	return_list(char **env);
-void	export(char *complet_path, t_list *lst_env);
+char	*add_on_path(char *complet_path, char *path_export, char *saved_path);
+char	*return_name(char *complet_path);
+char	*return_path(char *complet_path);
+char	*clean_path(char *path);
 
 // Prompt functions
 

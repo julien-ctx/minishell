@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 16:05:39 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/23 19:40:26 by ctardy           ###   ########.fr       */
+/*   Updated: 2022/06/24 19:11:25 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,18 @@
 # include <stdio.h>
 # include <unistd.h>
 
-typedef struct	s_list
+typedef struct s_list
 {
-	struct s_list *next;
-	struct s_list *next_sort;
-	void	*content;
-	char	*head;
-	char	linker;
-	char	*name;
-	char	*path;
-} t_list;
+	struct s_list	*next;
+	struct s_list	*next_sort;
+	void			*content;
+	int				index;
+	char			*head;
+	char			linker;
+	char			*name;
+	char			*path;
+	char			*base_path;
+}	t_list;
 
 int		ft_atoi(const char *str);
 void	ft_bzero(void *s, size_t n);

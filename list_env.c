@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:17:47 by ctardy            #+#    #+#             */
-/*   Updated: 2022/06/24 15:05:50 by ctardy           ###   ########.fr       */
+/*   Updated: 2022/06/24 16:35:40 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,19 @@ t_list	*list_env(char **env, int size_env)
 	return (first_lst);
 }
 
+void	init_rank(t_list *lst)
+{
+	int	i;
+
+	i = 0;
+	while (lst)
+	{
+		lst->index = i++;
+		lst = lst->next_sort;
+	}
+}
+
+
 void	swap_list(t_list **previous_next, t_list *last)
 {
 	t_list	*swap;
@@ -102,6 +115,7 @@ void	return_list(char **env)
 	g_global->env = list_env(env, env_size(env));
 	list = (g_global->env);
 	g_global->env = sort_list(&list);
+	init_rank(g_global->env);
 }
 
 // int main(int argc, char **argv, char **env)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 17:57:27 by juliencauch       #+#    #+#             */
-/*   Updated: 2022/06/17 14:07:13 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/06/24 16:04:59 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ char	*ft_strjoin(char *s1, char *s2)
 	len = ft_strlen(s1) + ft_strlen(s2) + 1;
 	i = 0;
 	j = 0;
+	printf("valeur de S1 : %s\n", s1);
+	printf("valeur de S2 : %s\n", s2);
 	string = malloc(len * sizeof(char));
 	if (!string)
 		return (NULL);
