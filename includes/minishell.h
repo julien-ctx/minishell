@@ -39,6 +39,7 @@ typedef struct global
 typedef enum enum_l
 {
 	BUILTIN = 42,
+	BACK_SLASH,
 	EXEC,
 	DOLLAR,
 	PIPE,
@@ -49,7 +50,7 @@ typedef enum enum_l
 	QUOTE,
 	D_QUOTE,
 	TEXT,
-	WHITE_SPACE
+	WHITE_SPACE,
 }	t_enum_l;
 
 typedef struct l
@@ -77,10 +78,8 @@ t_l 		*create_new_elmt(char *str);
 t_l			*add_elmt(t_l **elmt, char *str);
 t_enum_l	find_type(char *str);
 void		handle_chev(char *args, t_l **elmt, int *i);
-void		handle_dollar(char *args, t_l **elmt, int *i);
-void		handle_w_s(char *args, t_l **elmt, int *i);
-void		handle_pipe(char *args, t_l **elmt, int *i);
-void		handle_quote(char *args, t_l **elmt, int *i);
+void		handle_quotes(char *args, t_l **elmt, int *i);
+void		general_handler(char *args, t_l **elmt, int *i, int type);
 
 // Parsing functions
 

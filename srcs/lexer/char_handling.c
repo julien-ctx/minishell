@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   char_handling.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 13:12:45 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/24 15:34:33 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/06/25 17:13:05 by juliencauch      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	handle_quote(char *args, t_l **elmt, int *i)
+void	handle_quotes(char *args, t_l **elmt, int *i)
 {
 	if (g_glob->curr)
 	{
@@ -24,45 +24,33 @@ void	handle_quote(char *args, t_l **elmt, int *i)
 	g_glob->curr = NULL;
 }
 
-void	handle_pipe(char *args, t_l **elmt, int *i)
+void	check_successive(char *args, int *i, int type)
 {
-	if (g_glob->curr)
-	{
-		add_elmt(elmt, g_glob->curr);	
-		g_glob->curr = NULL;	
-	}
-	while (args[*i] == '|')
-	{
-		g_glob->curr = append_char(g_glob->curr, args[*i]);
-		(*i)++;
-	}
-	add_elmt(elmt, g_glob->curr);	
-	g_glob->curr = NULL;	
-	(*i)--;	
+	if (type == WHITE_SPACE)
+		while ((args[*i] == ' ') || (args[*i] >= 9 && args[*i] <= 13))
+			g_glob->curr = append_char(g_glob->curr, args[(*i)++]);
+	else if (type == DOLLAR)
+		while (args[*i] == '$')
+			g_glob->curr = append_char(g_glob->curr, args[(*i)++]);	
+	else if (type == PIPE)
+		while (args[*i] == '|')
+			g_glob->curr = append_char(g_glob->curr, args[(*i)++]);	
+	else if (type == BACK_SLASH)
+		while (args[*i] == '\\')
+			g_glob->curr = append_char(g_glob->curr, args[(*i)++]);	
 }
 
-void	handle_w_s(char *args, t_l **elmt, int *i)
+void	general_handler(char *args, t_l **elmt, int *i, int type)
 {
 	if (g_glob->curr)
 	{
 		add_elmt(elmt, g_glob->curr);	
 		g_glob->curr = NULL;	
 	}
-	while ((args[*i] == ' ') || (args[*i] >= 9 && args[*i] <= 13))
-	{
-		g_glob->curr = append_char(g_glob->curr, args[*i]);
-		(*i)++;
-	}
+	check_successive(args, i, type);
 	add_elmt(elmt, g_glob->curr);	
 	g_glob->curr = NULL;	
 	(*i)--;
-}
-
-void	handle_dollar(char *args, t_l **elmt, int *i)
-{
-	g_glob->curr = append_char(g_glob->curr, args[*i]);
-	add_elmt(elmt, g_glob->curr);
-	g_glob->curr = NULL;
 }
 
 void	handle_chev(char *args, t_l **elmt, int *i)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_type.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 14:29:32 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/24 15:33:04 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/06/25 17:05:10 by juliencauch      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,23 +70,24 @@ t_enum_l	chev_type(char *str)
 
 t_enum_l find_type(char *str)
 {
-	/*if (!str[0])
-		printf("NULL\n");*/
 	if (is_builtin(str))
 		return (BUILTIN);
 	else if (is_exec(str))
 		return (EXEC);
 	else if (str[0] == '<' || str[0] == '>')
 		return (chev_type(str));
-	else if (!ft_strncmp("|", str, 1) && ft_strlen(str) == 1)
+	else if (str[0] == '|')
 		return (PIPE);
-	else if (ft_strlen(str) == 1 && str[0] == '$')
+	else if (str[0] == '$')
 		return (DOLLAR);
-	else if (ft_strlen(str) == 1 && str[0] == '\'')
+	else if (str[0] == '\'')
 		return (QUOTE);
-	else if (ft_strlen(str) == 1 && str[0] == '"')
+	else if (str[0] == '"')
 		return (D_QUOTE);
-	//create white space
+	else if (str[0] == ' ' || (str[0] >= 9 && str[0] <= 13))
+		return (WHITE_SPACE);
+	else if (str[0] == '\\')
+		return (BACK_SLASH);
 	else
 		return (TEXT);
 	return (-1);

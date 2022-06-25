@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 13:58:50 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/24 15:28:27 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/06/25 16:58:40y juliencauch      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,19 +49,21 @@ void	checker_type(char *args, t_l **elmt, int *i)
 		}
 	}
 	else if ((args[*i] == ' ') || (args[*i] >= 9 && args[*i] <= 13))
-		handle_w_s(args, elmt, i);
+		general_handler(args, elmt, i, WHITE_SPACE);
 	else if (args[*i] == '<' || args[*i] == '>')
 		handle_chev(args, elmt, i);
 	else if (args[*i] == '$')
-		handle_dollar(args, elmt, i);
+		general_handler(args, elmt, i, DOLLAR);
 	else if (args[*i] == '|')
-		handle_pipe(args, elmt, i);
-	else if (args[*i] == '"')
-		handle_quote(args, elmt, i);
-	/*else if (ft_isalnum(args[*i]))
-		g_glob->curr = append_char(g_glob->curr, args[*i]);*/
-	else if (ft_isalnum(args[*i]))
+		general_handler(args, elmt, i, PIPE);
+	else if (args[*i] == '"' || args[*i] == '\'')
+		handle_quotes(args, elmt, i);
+	else if (args[*i] == '\\')
+		general_handler(args, elmt, i, BACK_SLASH);
+	else
 		g_glob->curr = append_char(g_glob->curr, args[*i]);
+	/*else if (ft_isalnum(args[*i]))
+	g_glob->curr = append_char(g_glob->curr, args[*i]);*/
 }
 
 void	lexer(char *args)
