@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_elmt_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 14:06:58 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/24 14:14:14 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/06/25 21:11:24 by juliencauch      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_l	*create_new_elmt(char *str)
 {
 	t_l	*new;
-	
+
 	new = malloc(sizeof(t_l));
 	new->str = str;
 	new->type = find_type(str);
@@ -26,7 +26,7 @@ t_l	*add_elmt(t_l **elmt, char *str)
 {
 	t_l	*tmp;
 	t_l	*new;
-	
+
 	if (!*elmt)
 	{
 		*elmt = create_new_elmt(str);

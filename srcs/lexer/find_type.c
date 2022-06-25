@@ -6,12 +6,15 @@
 /*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 14:29:32 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/25 17:05:10 by juliencauch      ###   ########.fr       */
+/*   Updated: 2022/06/25 21:13:25 by juliencauch      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
+/***************************************************************************
+These functions are used to add a token, as an enum, on all the strings
+inside each element of the linked list.
+***************************************************************************/
 int	is_builtin(char *str)
 {
 	if (ft_strlen(str) == 4 && !ft_strncmp(str, "echo", 4))
@@ -51,6 +54,7 @@ int	is_exec(char *str)
 			return (1);
 		}
 		free(curr_path);
+		curr_path = NULL;
 		i++;
 	}
 	free(path);
@@ -69,10 +73,10 @@ t_enum_l	chev_type(char *str)
 }
 
 t_enum_l find_type(char *str)
-{
+{	
 	if (is_builtin(str))
 		return (BUILTIN);
-	else if (is_exec(str))
+	if (is_exec(str))
 		return (EXEC);
 	else if (str[0] == '<' || str[0] == '>')
 		return (chev_type(str));

@@ -73,17 +73,20 @@ void	signal_init(void);
 
 // Lexer functions
 
-void		lexer(char *args);
+int			lexer(char *args);
 t_l 		*create_new_elmt(char *str);
 t_l			*add_elmt(t_l **elmt, char *str);
 t_enum_l	find_type(char *str);
 void		handle_chev(char *args, t_l **elmt, int *i);
 void		handle_quotes(char *args, t_l **elmt, int *i);
 void		general_handler(char *args, t_l **elmt, int *i, int type);
+int			type_size(t_l *elmt);
+//void		print_list_j(t_l *elmt, int n);
 
 // Parsing functions
 
-void	parsing(char *args);
+int		parser(t_l *elmt);
+int		single_one(t_l *elmt);
 
 // Builtin functions
 

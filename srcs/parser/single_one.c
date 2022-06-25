@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   single_one.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/10 17:15:56 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/25 20:24:28 by juliencauch      ###   ########.fr       */
+/*   Created: 2022/06/25 18:26:23 by juliencauch       #+#    #+#             */
+/*   Updated: 2022/06/25 18:56:21 by juliencauch      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-/***************************************************************************
-Main function to parse arguments and make the right behaviour.
-***************************************************************************/
-int	parser(t_l *elmt)
+int	text_handler(t_l *elmt)
 {
+	if (elmt->str[0] == '&')
+		printf("minishell: syntax error near unexpected token `&'\n");
 	return (STOP);
-	if (type_size(elmt) == 1)
-		return (single_one(elmt));
-		return (single_one(elmt));
 }
+
+int	single_one(t_l *elmt)
+{
+	if (elmt->type == TEXT)
+		return (text_handler(elmt));
+		return (text_handler(elmt));
+}
+

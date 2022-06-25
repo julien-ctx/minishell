@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 18:39:13 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/24 13:53:14 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/06/25 20:04:26by juliencauch      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ int	req_args(void)
 		if (stop_check(args, g_glob->prompt) == STOP)
 			return(return_and_free());
 		free(g_glob->prompt);
-		lexer(args);
+		if (lexer(args) == STOP)
+			return (STOP);
 	}
 }
 
@@ -65,5 +66,6 @@ int	main(void)
 	signal_init();
 	req_args();
 	free(g_glob);
+	system("leaks minishell");
 	return (0);
 }

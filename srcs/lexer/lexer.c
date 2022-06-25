@@ -38,6 +38,11 @@ void	print_list_j(t_l *elmt, int n)
 	}
 }
 
+/***************************************************************************
+This function checks input characters, one by one, and creates tokens to
+separate in different part the input string. After that, the parser will
+see if the newly created token string make sense or is bullshit.
+***************************************************************************/
 void	checker_type(char *args, t_l **elmt, int *i)
 {
 	if (args[*i] == '\0')
@@ -61,15 +66,17 @@ void	checker_type(char *args, t_l **elmt, int *i)
 	else if (args[*i] == '\\')
 		general_handler(args, elmt, i, BACK_SLASH);
 	else
+	{
 		g_glob->curr = append_char(g_glob->curr, args[*i]);
-	/*else if (ft_isalnum(args[*i]))
-	g_glob->curr = append_char(g_glob->curr, args[*i]);*/
+	}
 }
 
-void	lexer(char *args)
+int	lexer(char *args)
 {
+
 	int		i;
 	t_l		*elmt;
+	t_l		*nav;
 
 	elmt = NULL;
 	g_glob->curr = NULL;
@@ -77,5 +84,21 @@ void	lexer(char *args)
 	while (args[++i])
 		checker_type(args, &elmt, &i);
 	checker_type(args, &elmt, &i);
-	print_list_j(elmt, 1);
+	if (parser(elmt) == STOP)
+	{
+
+		nav = elmt;
+		free(g_glob->curr);
+		free(args);
+		while (nav->next != elmt)
+		{
+			nav = nav->next;
+			free(nav->prev->str);
+			free(nav->prev);
+		}
+		free(nav->str);
+		free(nav);
+		return(STOP);
+	}
+	return (CONTINUE);
 }

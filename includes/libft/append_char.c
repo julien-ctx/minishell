@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   append_char.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 11:24:38 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/22 11:47:19 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/06/25 21:20:34 by juliencauch      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ char	*append_char(char *str, char c)
 	int		i;
 
 	len = ft_strlen(str);
-	new = malloc(len + 2);
 	i = -1;
 	if (!str)
 	{
@@ -28,6 +27,7 @@ char	*append_char(char *str, char c)
 		new[1] = '\0';
 		return (new);
 	}
+	new = malloc(len + 2);
 	while (str[++i])
 		new[i] = str[i];
 	new[i++] = c;

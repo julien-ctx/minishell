@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   type_list_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/10 17:15:56 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/25 20:24:28 by juliencauch      ###   ########.fr       */
+/*   Created: 2022/06/25 18:28:18 by juliencauch       #+#    #+#             */
+/*   Updated: 2022/06/25 18:30:12 by juliencauch      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-/***************************************************************************
-Main function to parse arguments and make the right behaviour.
-***************************************************************************/
-int	parser(t_l *elmt)
+int	type_size(t_l *elmt)
 {
-	return (STOP);
-	if (type_size(elmt) == 1)
-		return (single_one(elmt));
-		return (single_one(elmt));
+	t_l	*nav;
+	int	i;
+
+	i = 0;
+	nav = elmt;
+	while (nav->next != elmt)
+	{
+		i++;
+		nav = nav->next;
+	}
+	i++;
+	return (i);
 }

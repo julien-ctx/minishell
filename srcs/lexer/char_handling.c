@@ -6,11 +6,17 @@
 /*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 13:12:45 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/25 17:13:05 by juliencauch      ###   ########.fr       */
+/*   Updated: 2022/06/25 21:22:58 by juliencauch      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+/***************************************************************************
+All these functions check how many times there are successive tokens.
+Then they concatenate them in a string and separate them from the rest
+of the string.
+***************************************************************************/
 
 void	handle_quotes(char *args, t_l **elmt, int *i)
 {
@@ -41,12 +47,10 @@ void	check_successive(char *args, int *i, int type)
 }
 
 void	general_handler(char *args, t_l **elmt, int *i, int type)
-{
+{	system("leaks minishell");
+	exit(1);
 	if (g_glob->curr)
-	{
-		add_elmt(elmt, g_glob->curr);	
-		g_glob->curr = NULL;	
-	}
+		add_elmt(elmt, g_glob->curr);
 	check_successive(args, i, type);
 	add_elmt(elmt, g_glob->curr);	
 	g_glob->curr = NULL;	
