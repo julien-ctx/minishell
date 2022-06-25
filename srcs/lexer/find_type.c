@@ -6,7 +6,7 @@
 /*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 14:29:32 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/25 21:13:25 by juliencauch      ###   ########.fr       */
+/*   Updated: 2022/06/25 22:11:04 by juliencauch      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	is_builtin(char *str)
 
 int	is_exec(char *str)
 {
+		
 	char	**path;
 	char	*all_paths;
 	char	*curr_path;
@@ -46,18 +47,22 @@ int	is_exec(char *str)
 	i = 0;
 	while (path[i])
 	{
-		curr_path = ft_strjoin(path[i], "/");	
+		curr_path = strjoin_without_free(path[i], "/");	
 		curr_path = ft_strjoin(curr_path, str);	
+
 		if (!access(curr_path, F_OK))
 		{
 			free(curr_path);
+			i = 0;
+			while (path[i])
+				free(path[i++]);
+			free(path);
 			return (1);
 		}
 		free(curr_path);
-		curr_path = NULL;
 		i++;
 	}
-	free(path);
+
 	return (0);
 }
 

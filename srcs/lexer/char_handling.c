@@ -6,7 +6,7 @@
 /*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 13:12:45 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/25 21:22:58 by juliencauch      ###   ########.fr       */
+/*   Updated: 2022/06/25 22:26:47 by juliencauch      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,12 @@ void	check_successive(char *args, int *i, int type)
 }
 
 void	general_handler(char *args, t_l **elmt, int *i, int type)
-{	system("leaks minishell");
-	exit(1);
+{
 	if (g_glob->curr)
 		add_elmt(elmt, g_glob->curr);
 	check_successive(args, i, type);
-	add_elmt(elmt, g_glob->curr);	
+	add_elmt(elmt, g_glob->curr);
+	free(g_glob->curr);
 	g_glob->curr = NULL;	
 	(*i)--;
 }
@@ -62,6 +62,7 @@ void	handle_chev(char *args, t_l **elmt, int *i)
 	if (g_glob->curr)
 	{
 		add_elmt(elmt, g_glob->curr);	
+		free(g_glob->curr);
 		g_glob->curr = NULL;
 	}
 	g_glob->curr = append_char(g_glob->curr, args[*i]);
@@ -69,12 +70,14 @@ void	handle_chev(char *args, t_l **elmt, int *i)
 	{
 		g_glob->curr = append_char(g_glob->curr, args[*i + 1]);
 		add_elmt(elmt, g_glob->curr);
+		free(g_glob->curr);
 		g_glob->curr = NULL;
 		(*i)++;
 	}
 	else
 	{
 		add_elmt(elmt, g_glob->curr);
+		free(g_glob->curr);
 		g_glob->curr = NULL;
 	}
 }
