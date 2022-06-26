@@ -6,7 +6,7 @@
 /*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 14:29:32 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/25 22:11:04 by juliencauch      ###   ########.fr       */
+/*   Updated: 2022/06/26 13:45:33 by juliencauch      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int	is_builtin(char *str)
 
 int	is_exec(char *str)
 {
-		
 	char	**path;
 	char	*all_paths;
 	char	*curr_path;
@@ -49,7 +48,6 @@ int	is_exec(char *str)
 	{
 		curr_path = strjoin_without_free(path[i], "/");	
 		curr_path = ft_strjoin(curr_path, str);	
-
 		if (!access(curr_path, F_OK))
 		{
 			free(curr_path);
@@ -60,9 +58,13 @@ int	is_exec(char *str)
 			return (1);
 		}
 		free(curr_path);
+		curr_path = NULL;
 		i++;
 	}
-
+	i = 0;
+	while (path[i])
+		free(path[i++]);
+	free(path);	
 	return (0);
 }
 
@@ -78,10 +80,10 @@ t_enum_l	chev_type(char *str)
 }
 
 t_enum_l find_type(char *str)
-{	
+{
 	if (is_builtin(str))
 		return (BUILTIN);
-	if (is_exec(str))
+	else if (is_exec(str))
 		return (EXEC);
 	else if (str[0] == '<' || str[0] == '>')
 		return (chev_type(str));
@@ -97,6 +99,10 @@ t_enum_l find_type(char *str)
 		return (WHITE_SPACE);
 	else if (str[0] == '\\')
 		return (BACK_SLASH);
+	else if (str[0] == '.')
+		return (DOT);
+	else if (str[0] == '/')
+		return (SLASH);
 	else
 		return (TEXT);
 	return (-1);

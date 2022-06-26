@@ -38,6 +38,20 @@ int stop_check(char *args, char *prompt)
 	return (CONTINUE);
 }
 
+int	empty_args(char *args)
+{
+	int	i;
+
+	i = 0;
+	while (args[i])
+	{
+		if ((args[i] != ' ') && ((args[i] < 9) || (args[i] > 13)))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 /***************************************************************************
 Main loop to retrieve arguments and then use the parser or display an error
 message on the terminal and terminate the session
@@ -55,6 +69,8 @@ int	req_args(void)
 		if (stop_check(args, g_glob->prompt) == STOP)
 			return(return_and_free());
 		free(g_glob->prompt);
+		if (empty_args(args))
+			continue;
 		if (lexer(args) == STOP)
 			return (STOP);
 	}

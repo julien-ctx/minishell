@@ -46,13 +46,7 @@ see if the newly created token string make sense or is bullshit.
 void	checker_type(char *args, t_l **elmt, int *i)
 {
 	if (args[*i] == '\0')
-	{
-		if (g_glob->curr)
-		{
-			add_elmt(elmt, g_glob->curr);	
-			g_glob->curr = NULL;
-		}
-	}
+		end_handler(elmt);
 	else if ((args[*i] == ' ') || (args[*i] >= 9 && args[*i] <= 13))
 		general_handler(args, elmt, i, WHITE_SPACE);
 	else if (args[*i] == '<' || args[*i] == '>')
@@ -65,15 +59,16 @@ void	checker_type(char *args, t_l **elmt, int *i)
 		handle_quotes(args, elmt, i);
 	else if (args[*i] == '\\')
 		general_handler(args, elmt, i, BACK_SLASH);
+	else if (args[*i] == '.')
+		general_handler(args, elmt, i, DOT);
+	else if (args[*i] == '/')
+		general_handler(args, elmt, i, SLASH);
 	else
-	{
 		g_glob->curr = append_char(g_glob->curr, args[*i]);
-	}
 }
 
 int	lexer(char *args)
 {
-
 	int		i;
 	t_l		*elmt;
 	t_l		*nav;
@@ -86,9 +81,7 @@ int	lexer(char *args)
 	checker_type(args, &elmt, &i);
 	if (parser(elmt) == STOP)
 	{
-
 		nav = elmt;
-		free(g_glob->curr);
 		free(args);
 		while (nav->next != elmt)
 		{

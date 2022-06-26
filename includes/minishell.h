@@ -40,6 +40,7 @@ typedef enum enum_l
 {
 	BUILTIN = 42,
 	BACK_SLASH,
+	SLASH,
 	EXEC,
 	DOLLAR,
 	PIPE,
@@ -51,6 +52,7 @@ typedef enum enum_l
 	D_QUOTE,
 	TEXT,
 	WHITE_SPACE,
+	DOT,
 }	t_enum_l;
 
 typedef struct l
@@ -81,7 +83,8 @@ void		handle_chev(char *args, t_l **elmt, int *i);
 void		handle_quotes(char *args, t_l **elmt, int *i);
 void		general_handler(char *args, t_l **elmt, int *i, int type);
 int			type_size(t_l *elmt);
-//void		print_list_j(t_l *elmt, int n);
+void		end_handler(t_l **elmt);
+void		print_list_j(t_l *elmt, int n);
 
 // Parsing functions
 
