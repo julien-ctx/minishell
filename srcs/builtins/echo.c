@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 14:58:20 by ctardy            #+#    #+#             */
-/*   Updated: 2022/06/27 15:35:47 by ctardy           ###   ########.fr       */
+/*   Updated: 2022/06/27 18:16:04 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	echo(int argc, char **argv)
 	int		i;
 	int		end;
 
-	i = checker_flag(argc, argv);	
+	i = checker_flag(argc, argv);
 	end = i;
 	while (i < argc)
 	{	
@@ -36,10 +36,10 @@ void	echo(int argc, char **argv)
 			if (end == 2)
 			{
 				printf("%s", echo);
-				exit (0);		
+				exit (0);
 			}
 			printf("%s\n", echo);
-			exit (0);		
+			exit (0);
 		}
 		echo = ft_strdup(argv[i++]);
 		printf("%s ", echo);
