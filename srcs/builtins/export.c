@@ -6,15 +6,17 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 18:55:44 by ctardy            #+#    #+#             */
-/*   Updated: 2022/06/24 19:20:37 by ctardy           ###   ########.fr       */
+/*   Updated: 2022/06/27 14:57:37 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /***************************************************************************
 Oh it's you again ? You waited me to explain you how this export 🚀 works and 
 what it is for ? 😂  Well, unfortunately i bas my ownes couilles ! But whatever
-i'll still do it. Export can create a variable in the shell 🐢 if it doesn't 
-exist.  However, it replaces the value by the new one you describe.
+i'll still do it. 
+Export can create a variable in the shell 🐢  if it doesn't exist.
+However, it replaces the value by the new one you describe.
+He can rajoute des mots at la fin of the phrase too with '+='
 ***************************************************************************/
 
 #include "../../includes/minishell.h"
