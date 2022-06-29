@@ -6,7 +6,7 @@
 /*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 14:29:32 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/26 13:45:33 by juliencauch      ###   ########.fr       */
+/*   Updated: 2022/06/29 08:55:00 by juliencauch      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,10 @@ t_enum_l find_type(char *str)
 {
 	if (is_builtin(str))
 		return (BUILTIN);
+	else if (str[0] == '.')
+		return (DOT);
+	else if (str[0] == '/')
+		return (SLASH);
 	else if (is_exec(str))
 		return (EXEC);
 	else if (str[0] == '<' || str[0] == '>')
@@ -99,10 +103,6 @@ t_enum_l find_type(char *str)
 		return (WHITE_SPACE);
 	else if (str[0] == '\\')
 		return (BACK_SLASH);
-	else if (str[0] == '.')
-		return (DOT);
-	else if (str[0] == '/')
-		return (SLASH);
 	else
 		return (TEXT);
 	return (-1);

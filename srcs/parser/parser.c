@@ -6,7 +6,7 @@
 /*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 17:15:56 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/25 20:24:28 by juliencauch      ###   ########.fr       */
+/*   Updated: 2022/06/29 09:03:15 by juliencauch      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ Main function to parse arguments and make the right behaviour.
 ***************************************************************************/
 int	parser(t_l *elmt)
 {
-	return (STOP);
 	if (type_size(elmt) == 1)
 		return (single_one(elmt));
 		return (single_one(elmt));

@@ -6,7 +6,7 @@
 /*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 13:12:45 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/26 13:23:23 by juliencauch      ###   ########.fr       */
+/*   Updated: 2022/06/29 08:20:15 by juliencauch      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,12 @@ void	check_successive(char *args, int *i, int type)
 			g_glob->curr = append_char(g_glob->curr, args[(*i)++]);	
 	else if (type == BACK_SLASH)
 		while (args[*i] == '\\')
+			g_glob->curr = append_char(g_glob->curr, args[(*i)++]);	
+	else if (type == DOT)
+		while (args[*i] == '.')
+			g_glob->curr = append_char(g_glob->curr, args[(*i)++]);	
+	else
+		while (args[*i] == '/')
 			g_glob->curr = append_char(g_glob->curr, args[(*i)++]);	
 }
 

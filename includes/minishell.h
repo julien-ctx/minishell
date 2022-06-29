@@ -36,6 +36,7 @@ typedef struct global
 	int		in_quotes;
 }	t_global;
 
+
 typedef enum enum_l
 {
 	BUILTIN = 42,
@@ -90,6 +91,7 @@ void		print_list_j(t_l *elmt, int n);
 
 int		parser(t_l *elmt);
 int		single_one(t_l *elmt);
+int		is_pipe(t_l *elmt);
 
 // Builtin functions
 
