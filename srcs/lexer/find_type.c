@@ -6,7 +6,7 @@
 /*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 14:29:32 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/29 08:55:00 by juliencauch      ###   ########.fr       */
+/*   Updated: 2022/06/29 09:59:41 by juliencauch      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,8 @@ t_enum_l find_type(char *str)
 	else if (str[0] == ' ' || (str[0] >= 9 && str[0] <= 13))
 		return (WHITE_SPACE);
 	else if (str[0] == '\\')
+		return (BACK_SLASH);
+	else if (str[0] == '-')
 		return (BACK_SLASH);
 	else
 		return (TEXT);

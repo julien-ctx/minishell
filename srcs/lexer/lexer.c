@@ -63,6 +63,8 @@ void	checker_type(char *args, t_l **elmt, int *i)
 		general_handler(args, elmt, i, DOT);
 	else if (args[*i] == '/')
 		general_handler(args, elmt, i, SLASH);
+	else if (args[*i] == '-')
+		general_handler(args, elmt, i, DASH);
 	else
 		g_glob->curr = append_char(g_glob->curr, args[*i]);
 }
@@ -79,6 +81,8 @@ int	lexer(char *args)
 	while (args[++i])
 		checker_type(args, &elmt, &i);
 	checker_type(args, &elmt, &i);
+	print_list_j(elmt, 1);
+	exit(1);
 	if (parser(elmt) == STOP)
 	{
 		nav = elmt;

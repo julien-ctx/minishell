@@ -23,6 +23,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <signal.h>
+# include <stdbool.h>
 
 # define CONTINUE	2
 # define STOP		3
@@ -52,6 +53,7 @@ typedef enum enum_l
 	QUOTE,
 	D_QUOTE,
 	TEXT,
+	DASH,
 	WHITE_SPACE,
 	DOT,
 }	t_enum_l;
@@ -92,6 +94,8 @@ void		print_list_j(t_l *elmt, int n);
 int		parser(t_l *elmt);
 int		single_one(t_l *elmt);
 int		is_pipe(t_l *elmt);
+int		check_pipe_syntax(t_l *elmt);
+
 
 // Builtin functions
 

@@ -13,7 +13,7 @@ SRCS = minishell.c \
 		$(addprefix srcs/prompt/, prompt.c) \
 		$(addprefix srcs/signals/, signals.c) \
 		$(addprefix srcs/lexer/, lexer.c lexer_elmt_utils.c find_type.c char_handling.c type_list_utils.c) \
-		$(addprefix srcs/parser/, parser.c check_type_occurence.c) \
+		$(addprefix srcs/parser/, parser.c pipe.c pipe_checking.c) \
 		$(addprefix srcs/commands/, commands.c) \
 		$(addprefix srcs/builtins/, pwd.c unset.c env.c exit.c cd.c echo.c export.c) \
 		$(addprefix includes/gnl/, get_next_line.c get_next_line_utils.c) \

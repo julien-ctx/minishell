@@ -1,23 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   quote_checking.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/10 17:15:56 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/29 09:54:15 by juliencauch      ###   ########.fr       */
+/*   Created: 2022/06/29 10:02:10 by juliencauch       #+#    #+#             */
+/*   Updated: 2022/06/29 10:02:21 by juliencauch      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-/***************************************************************************
-Main function to parse arguments and make the right behaviour.
-***************************************************************************/
-int	parser(t_l *elmt)
-{
-	if (is_pipe(elmt))
-		check_pipe_syntax(elmt);
-	return(1);
-}
