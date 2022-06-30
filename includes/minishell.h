@@ -66,6 +66,14 @@ typedef struct l
 	struct l	*prev;
 }	t_l;
 
+typedef struct	p
+{
+	char		*str;
+	t_enum_l	type;
+	struct l	*next;
+	struct l	*prev;	
+}	t_p;
+
 // Prompt functions
 
 char	*create_prompt(void);
@@ -94,7 +102,9 @@ void		print_list_j(t_l *elmt, int n);
 int		parser(t_l *elmt);
 int		single_one(t_l *elmt);
 int		is_pipe(t_l *elmt);
-int		check_pipe_syntax(t_l *elmt);
+int		is_quote(t_l *elmt);
+t_p		*pipe_handling(t_l *elmt, t_p **parsed);
+t_p		*quote_handling(t_l *elmt, t_p **parsed);
 
 
 // Builtin functions
