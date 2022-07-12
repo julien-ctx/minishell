@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 17:32:47 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/16 17:36:59 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/06/27 18:22:01 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 void	ft_pwd(void)
 {
 	char	cwd[1024];
-	
+
 	printf("%s\n", getcwd(cwd, sizeof(cwd)));
 }

@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 19:10:26 by ctardy            #+#    #+#             */
-/*   Updated: 2022/06/24 19:16:12 by ctardy           ###   ########.fr       */
+/*   Updated: 2022/06/27 19:14:22 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	print_list(t_list *list)
 	fake = list;
 	while (fake)
 	{
-		printf("%d ", fake->index);
+		//printf("%d ", fake->index);
 		printf("%s", fake->head);
 		printf("%s", fake->name);
 		printf("%c", fake->linker);
