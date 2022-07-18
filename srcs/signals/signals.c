@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 16:37:16 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/18 17:39:11 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/07/18 17:41:43 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+// les ctrl sont sence exit avec un code en particulier, a checker
 
 #include "../../includes/minishell.h"
 

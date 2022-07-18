@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 15:35:28 by ctardy            #+#    #+#             */
-/*   Updated: 2022/07/05 16:41:47 by ctardy           ###   ########.fr       */
+/*   Updated: 2022/07/18 17:24:33 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,11 @@ void	cd(char **argv)
 	// char	*str;
 
 	// str = check_argv(argv[2]);
+	if (stncmp(argv[2], "..", 2) == 0);
+	{
+		if (chdir(argv[2]) == 0)
+			return ;
+	}
 	if (chdir(argv[2]) == 0)
 		return ;
 }
