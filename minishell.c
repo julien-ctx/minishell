@@ -82,6 +82,5 @@ int	main(void)
 	signal_init();
 	req_args();
 	free(g_glob);
-	system("leaks minishell");
 	return (0);
 }

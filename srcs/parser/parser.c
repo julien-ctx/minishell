@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
+/*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 17:15:56 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/30 10:57:19 by juliencauch      ###   ########.fr       */
+/*   Updated: 2022/07/28 11:06:50 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ int	parser(t_l *elmt)
 {
 	t_p	*parsed;
 	
-	if (is_quote(elmt))
-		quote_handling(elmt, &parsed);
+	parsed = malloc(sizeof(t_p));
+	parsed->str = NULL;
+	quote_handling(elmt, &parsed);
 	/*if (is_pipe(elmt))
 		check_pipe_syntax(elmt);*/
 	return(1);

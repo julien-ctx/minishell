@@ -25,6 +25,8 @@
 # include <signal.h>
 # include <stdbool.h>
 
+# define NO			0
+# define YES		1
 # define CONTINUE	2
 # define STOP		3
 
@@ -58,6 +60,26 @@ typedef enum enum_l
 	DOT,
 }	t_enum_l;
 
+typedef enum enum_p
+{
+	BUILTIN = 42,
+	BACK_SLASH,
+	SLASH,
+	EXEC,
+	DOLLAR,
+	PIPE,
+	R_CHEV,
+	L_CHEV,
+	R_DCHEV,
+	L_DCHEV,
+	QUOTE,
+	D_QUOTE,
+	TEXT,
+	DASH,
+	WHITE_SPACE,
+	DOT,
+}	t_enum_p;
+
 typedef struct l
 {
 	char		*str;
@@ -69,7 +91,7 @@ typedef struct l
 typedef struct	p
 {
 	char		*str;
-	t_enum_l	type;
+	t_enum_p	type;
 	struct l	*next;
 	struct l	*prev;	
 }	t_p;

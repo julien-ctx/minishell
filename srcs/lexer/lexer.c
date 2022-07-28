@@ -83,6 +83,7 @@ int	lexer(char *args)
 	checker_type(args, &elmt, &i);
 	//still neeed to check leaks here in case 
 	//parser returns STOP
+	print_list_j(elmt, 1);
 	if (parser(elmt) == STOP)
 	{
 		nav = elmt;
