@@ -42,7 +42,7 @@ typedef struct global
 
 typedef enum enum_l
 {
-	BUILTIN = 42,
+	BUILTIN = 45,
 	BACK_SLASH,
 	EXEC,
 	SLASH,

@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 10:02:10 by juliencauch       #+#    #+#             */
-/*   Updated: 2022/07/30 15:15:48 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/07/30 17:09:21 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	add_to_parsed(char *str, t_p **parsed, int type)
 {
+	// printf("strrr '%s', type = %d\n", str, type);
 	t_p	*new;
 	t_p	*head;
 	
@@ -22,9 +23,17 @@ void	add_to_parsed(char *str, t_p **parsed, int type)
 		(*parsed)->next = *parsed;
 		(*parsed)->prev = *parsed;
 		(*parsed)->str = str;
+		if (type)
+			(*parsed)->type = type;
+		else
+			(*parsed)->type = TEXT;
 		return ;
 	}
 	new = malloc(sizeof(t_p));
+	if (type)
+		new->type = type;
+	else
+		new->type = TEXT;
 	new->str = str;
 	if ((*parsed)->next == *parsed || (*parsed)->prev == *parsed)
 	{
@@ -39,10 +48,6 @@ void	add_to_parsed(char *str, t_p **parsed, int type)
 	head->prev->next = new;
 	head->prev = new;
 	new->next = head;
-	if (type)
-		new->type = type;
-	else
-		new->type = TEXT;
 }
 
 void	d_quote_handling(t_l **nav, t_l *elmt, t_p **parsed)

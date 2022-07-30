@@ -47,20 +47,20 @@ void	print_list_p(t_p *elmt, int n)
 		tmp = elmt;
 		while (tmp->next != elmt)
 		{
-			printf("str='%s', type='%d'\n", tmp->str, tmp->type);
+			printf("strr='%s', type='%d'\n", tmp->str, tmp->type);
 			tmp = tmp->next;
 		}
-		printf("str='%s', type='%d'\n", tmp->str, tmp->type);
+		printf("strr='%s', type='%d'\n", tmp->str, tmp->type);
 	}
 	else
 	{
 		tmp = elmt->prev;
 		while (tmp->prev != elmt->prev)
 		{
-			printf("str='%s', type='%d'\n", tmp->str, tmp->type);
+			printf("strr='%s', type='%d'\n", tmp->str, tmp->type);
 			tmp = tmp->prev;
 		}
-		printf("str='%s', type='%d'\n", tmp->str, tmp->type);
+		printf("strr='%s', type='%d'\n", tmp->str, tmp->type);
 	}
 }
 
