@@ -12,7 +12,7 @@
 
 #include "../../includes/minishell.h"
 
-void	print_list_j(t_l *elmt, int n)
+void	print_list_l(t_l *elmt, int n)
 {
 	t_l *tmp;
 
@@ -38,6 +38,33 @@ void	print_list_j(t_l *elmt, int n)
 	}
 }
 
+void	print_list_p(t_p *elmt, int n)
+{
+	t_p *tmp;
+
+	if (n)
+	{
+		tmp = elmt;
+		while (tmp->next != elmt)
+		{
+			printf("str='%s', type='%d'\n", tmp->str, tmp->type);
+			tmp = tmp->next;
+		}
+		printf("str='%s', type='%d'\n", tmp->str, tmp->type);
+	}
+	else
+	{
+		tmp = elmt->prev;
+		while (tmp->prev != elmt->prev)
+		{
+			printf("str='%s', type='%d'\n", tmp->str, tmp->type);
+			tmp = tmp->prev;
+		}
+		printf("str='%s', type='%d'\n", tmp->str, tmp->type);
+	}
+}
+
+
 /***************************************************************************
 This function checks input characters, one by one, and creates tokens to
 separate in different part the input string. After that, the parser will
@@ -59,12 +86,6 @@ void	checker_type(char *args, t_l **elmt, int *i)
 		handle_quotes(args, elmt, i);
 	else if (args[*i] == '\\')
 		general_handler(args, elmt, i, BACK_SLASH);
-	else if (args[*i] == '.')
-		general_handler(args, elmt, i, DOT);
-	else if (args[*i] == '/')
-		general_handler(args, elmt, i, SLASH);
-	else if (args[*i] == '-')
-		general_handler(args, elmt, i, DASH);
 	else
 		g_glob->curr = append_char(g_glob->curr, args[*i]);
 }
@@ -83,7 +104,6 @@ int	lexer(char *args)
 	checker_type(args, &elmt, &i);
 	//still neeed to check leaks here in case 
 	//parser returns STOP
-	print_list_j(elmt, 1);
 	if (parser(elmt) == STOP)
 	{
 		nav = elmt;

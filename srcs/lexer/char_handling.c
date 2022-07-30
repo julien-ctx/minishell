@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   char_handling.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
+/*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 13:12:45 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/29 10:05:40 by juliencauch      ###   ########.fr       */
+/*   Updated: 2022/07/30 09:43:15 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,6 @@ void	check_successive(char *args, int *i, int type)
 			g_glob->curr = append_char(g_glob->curr, args[(*i)++]);	
 	else if (type == BACK_SLASH)
 		while (args[*i] == '\\')
-			g_glob->curr = append_char(g_glob->curr, args[(*i)++]);	
-	else if (type == DOT)
-		while (args[*i] == '.')
-			g_glob->curr = append_char(g_glob->curr, args[(*i)++]);	
-	else if (type == DASH)
-		while (args[*i] == '-')
-			g_glob->curr = append_char(g_glob->curr, args[(*i)++]);	
-	else
-		while (args[*i] == '/')
 			g_glob->curr = append_char(g_glob->curr, args[(*i)++]);	
 }
 

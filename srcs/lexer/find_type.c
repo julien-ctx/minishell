@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_type.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
+/*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 14:29:32 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/06/29 09:59:41 by juliencauch      ###   ########.fr       */
+/*   Updated: 2022/07/30 09:44:39 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,6 @@ t_enum_l find_type(char *str)
 {
 	if (is_builtin(str))
 		return (BUILTIN);
-	else if (str[0] == '.')
-		return (DOT);
-	else if (str[0] == '/')
-		return (SLASH);
 	else if (is_exec(str))
 		return (EXEC);
 	else if (str[0] == '<' || str[0] == '>')
@@ -102,8 +98,6 @@ t_enum_l find_type(char *str)
 	else if (str[0] == ' ' || (str[0] >= 9 && str[0] <= 13))
 		return (WHITE_SPACE);
 	else if (str[0] == '\\')
-		return (BACK_SLASH);
-	else if (str[0] == '-')
 		return (BACK_SLASH);
 	else
 		return (TEXT);

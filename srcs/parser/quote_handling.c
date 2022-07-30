@@ -6,73 +6,30 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 10:02:10 by juliencauch       #+#    #+#             */
-/*   Updated: 2022/07/28 15:09:59 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/07/30 11:42:42 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	check_d_quote(t_l *nav, t_p **parsed)
+void	d_quote_handling(t_l **nav, t_l *elmt, t_p **parsed)
 {
-	t_l	*next;
-	
-	nav = nav->next;
-	while (nav->next != )
+	char	*str;
+
+	str = NULL;
+	if ((*nav)->next != elmt)
+		*nav = (*nav)->next;
+	//handle case only one quote here
+	while ((*nav)->next != elmt && (*nav)->next->type != D_QUOTE)
 	{
-		if (nav->type == D_QUOTE)
-		{
-			next = nav;
-			while (next->type != D_QUOTE)
-			{
-				
-			}
-		}
-		else
-		{
-			
-		}
-		nav = nav->next;
+		str = strjoin_without_free(str, (*nav)->str);
+		*nav = (*nav)->next;
 	}	
+	str = strjoin_without_free(str, (*nav)->str);
+	printf("Final str : %s\n", str);
+	(void)parsed;
+	exit(1);
 }
-
-void	add_to_parsed(t_l *nav, t_p **parsed, int find_type)
-{
-	t_p	*new;
-	t_p	*head;
-	
-	if (!(*parsed)->str)
-	{
-		(*parsed)->str = nav->str;
-		(*parsed)->next = *parsed;
-		(*parsed)->prev = *parsed;
-	}
-	else if ((*parsed)->next == *parsed || (*parsed)->prev == *parsed)
-	{
-		new = malloc(sizeof(t_p));
-		new->next = *parsed;
-		new->prev = *parsed;
-		(*parsed)->next = new;
-		(*parsed)->prev = new->prev;
-	}
-	else
-	{
-		new = malloc(sizeof(t_p));
-		head = *parsed;
-		new->prev = head->prev;
-		head->prev->next = new;
-		head->prev = new;
-		new->next = *parsed;
-	}
-	if (find_type == YES)
-	{
-
-	}
-	else
-	{
-		
-	}
-}
-
 
 t_p	*quote_handling(t_l *elmt, t_p **parsed)
 {
@@ -82,10 +39,10 @@ t_p	*quote_handling(t_l *elmt, t_p **parsed)
 	while (nav->next != elmt)
 	{
 		if (nav->type == D_QUOTE)
-			check_d_quote(nav, parsed);
-		else
-			add_to_parsed(nav, parsed, NO);
+			d_quote_handling(&nav, elmt, parsed);
+		/*else
+			add_to_parsed(nav, elmt, parsed);*/
 		nav = nav->next;
-		
 	}
+	return (*parsed);
 }

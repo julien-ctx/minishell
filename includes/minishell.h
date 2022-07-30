@@ -44,8 +44,8 @@ typedef enum enum_l
 {
 	BUILTIN = 42,
 	BACK_SLASH,
-	SLASH,
 	EXEC,
+	SLASH,
 	DOLLAR,
 	PIPE,
 	R_CHEV,
@@ -55,30 +55,25 @@ typedef enum enum_l
 	QUOTE,
 	D_QUOTE,
 	TEXT,
-	DASH,
 	WHITE_SPACE,
-	DOT,
 }	t_enum_l;
 
-typedef enum enum_p
-{
-	BUILTIN = 42,
-	BACK_SLASH,
-	SLASH,
-	EXEC,
-	DOLLAR,
-	PIPE,
-	R_CHEV,
-	L_CHEV,
-	R_DCHEV,
-	L_DCHEV,
-	QUOTE,
-	D_QUOTE,
-	TEXT,
-	DASH,
-	WHITE_SPACE,
-	DOT,
-}	t_enum_p;
+// typedef enum enum_p
+// {
+// 	BUILTIN = 42,
+// 	BACK_SLASH,
+// 	SLASH,
+// 	DOLLAR,
+// 	PIPE,
+// 	R_CHEV,
+// 	L_CHEV,
+// 	R_DCHEV,
+// 	L_DCHEV,
+// 	QUOTE,
+// 	D_QUOTE,
+// 	TEXT,
+// 	WHITE_SPACE,
+// }	t_enum_p;
 
 typedef struct l
 {
@@ -91,9 +86,9 @@ typedef struct l
 typedef struct	p
 {
 	char		*str;
-	t_enum_p	type;
-	struct l	*next;
-	struct l	*prev;	
+	t_enum_l	type;
+	struct p	*next;
+	struct p	*prev;	
 }	t_p;
 
 // Prompt functions
@@ -117,7 +112,9 @@ void		handle_quotes(char *args, t_l **elmt, int *i);
 void		general_handler(char *args, t_l **elmt, int *i, int type);
 int			type_size(t_l *elmt);
 void		end_handler(t_l **elmt);
-void		print_list_j(t_l *elmt, int n);
+void		print_list_l(t_l *elmt, int n);
+void		print_list_p(t_p *elmt, int n);
+
 
 // Parsing functions
 

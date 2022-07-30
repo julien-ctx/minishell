@@ -20,7 +20,7 @@ SRCS = minishell.c \
 
 OBJS = $(SRCS:.c=.o)
 
-CFLAGS = -Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror -g
 
 HEADER = -I./includes -I./includes/libft/ -I./includes/gnl -I./includes/readline/include
 

@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 17:15:56 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/07/28 11:06:50 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/07/30 11:26:32 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,5 @@ int	parser(t_l *elmt)
 	parsed = malloc(sizeof(t_p));
 	parsed->str = NULL;
 	quote_handling(elmt, &parsed);
-	/*if (is_pipe(elmt))
-		check_pipe_syntax(elmt);*/
 	return(1);
 }
