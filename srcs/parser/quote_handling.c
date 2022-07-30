@@ -6,11 +6,44 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 10:02:10 by juliencauch       #+#    #+#             */
-/*   Updated: 2022/07/30 11:42:42 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/07/30 15:15:48 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+void	add_to_parsed(char *str, t_p **parsed, int type)
+{
+	t_p	*new;
+	t_p	*head;
+	
+	if (!(*parsed)->str)
+	{
+		(*parsed)->next = *parsed;
+		(*parsed)->prev = *parsed;
+		(*parsed)->str = str;
+		return ;
+	}
+	new = malloc(sizeof(t_p));
+	new->str = str;
+	if ((*parsed)->next == *parsed || (*parsed)->prev == *parsed)
+	{
+		new->next = *parsed;
+		new->prev = *parsed;
+		(*parsed)->next = new;
+		(*parsed)->prev = new;
+		return ;
+	}
+	head = *parsed;
+	new->prev = head->prev;
+	head->prev->next = new;
+	head->prev = new;
+	new->next = head;
+	if (type)
+		new->type = type;
+	else
+		new->type = TEXT;
+}
 
 void	d_quote_handling(t_l **nav, t_l *elmt, t_p **parsed)
 {
@@ -24,11 +57,11 @@ void	d_quote_handling(t_l **nav, t_l *elmt, t_p **parsed)
 	{
 		str = strjoin_without_free(str, (*nav)->str);
 		*nav = (*nav)->next;
-	}	
+	}
+	if ((*nav)->next->type == D_QUOTE)
+		(*nav)->next->type = WHITE_SPACE;
 	str = strjoin_without_free(str, (*nav)->str);
-	printf("Final str : %s\n", str);
-	(void)parsed;
-	exit(1);
+	add_to_parsed(str, parsed, NO);
 }
 
 t_p	*quote_handling(t_l *elmt, t_p **parsed)
@@ -40,9 +73,15 @@ t_p	*quote_handling(t_l *elmt, t_p **parsed)
 	{
 		if (nav->type == D_QUOTE)
 			d_quote_handling(&nav, elmt, parsed);
-		/*else
-			add_to_parsed(nav, elmt, parsed);*/
+		else if (nav->type != WHITE_SPACE)
+			add_to_parsed(nav->str, parsed, nav->type);
 		nav = nav->next;
 	}
+	if (nav->type == D_QUOTE)
+		d_quote_handling(&nav, elmt, parsed);
+	else if (nav->type != WHITE_SPACE)
+		add_to_parsed(nav->str, parsed, nav->type);
+	print_list_p(*parsed, 1);
+	exit(1);
 	return (*parsed);
 }
