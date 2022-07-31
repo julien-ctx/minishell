@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 10:02:10 by juliencauch       #+#    #+#             */
-/*   Updated: 2022/07/30 17:09:21 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/07/31 18:34:38 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	add_to_parsed(char *str, t_p **parsed, int type)
 {
-	// printf("strrr '%s', type = %d\n", str, type);
 	t_p	*new;
 	t_p	*head;
 	
@@ -50,14 +49,28 @@ void	add_to_parsed(char *str, t_p **parsed, int type)
 	new->next = head;
 }
 
-void	d_quote_handling(t_l **nav, t_l *elmt, t_p **parsed)
+int	check_single_d_quote(t_l *nav, t_l *elmt)
+{
+	while (nav->next != elmt)
+	{
+		if (nav->type == D_QUOTE)
+			return (0);
+		nav = nav->next;
+	}
+	if (nav->type == D_QUOTE)
+		return (0);
+	return (1);
+}
+
+int	d_quote_handling(t_l **nav, t_l *elmt, t_p **parsed)
 {
 	char	*str;
 
 	str = NULL;
 	if ((*nav)->next != elmt)
 		*nav = (*nav)->next;
-	//handle case only one quote here
+	if (check_single_d_quote(*nav, elmt))
+		//here handle quote non fermant
 	while ((*nav)->next != elmt && (*nav)->next->type != D_QUOTE)
 	{
 		str = strjoin_without_free(str, (*nav)->str);
@@ -67,6 +80,7 @@ void	d_quote_handling(t_l **nav, t_l *elmt, t_p **parsed)
 		(*nav)->next->type = WHITE_SPACE;
 	str = strjoin_without_free(str, (*nav)->str);
 	add_to_parsed(str, parsed, NO);
+	return (1);
 }
 
 t_p	*quote_handling(t_l *elmt, t_p **parsed)
