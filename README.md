@@ -1,4 +1,4 @@
-# Minishell: a basic shell implementation | 42
+# Minishell: A Basic Shell Implementation | 42
 
 ## Overview
 
